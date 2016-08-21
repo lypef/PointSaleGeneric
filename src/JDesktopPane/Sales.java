@@ -603,7 +603,7 @@ private String NombreMes ()
         {
                 try {
             Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-            String sql = "select * from calzado";
+            String sql = "select * from productos";
             ResultSet rs = Coneccion.Consulta(sql);
             DefaultTableModel DefaultTableModel = new DefaultTableModel(){
             public boolean isCellEditable(int rowIndex,int columnIndex){return false;} 
@@ -682,13 +682,7 @@ private String NombreMes ()
                             DefaultTableModel.addRow(valores);
                         }
                 }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
@@ -733,7 +727,7 @@ private String NombreMes ()
             String ValoresTabla [] = {"Id","Id provedor","Tipo","Color","Material","Modelo","Precio","Existencia","Numero","Descripcion"};
             DefaultTableModel.setColumnIdentifiers(ValoresTabla);
             TablaBusqueda.setModel(DefaultTableModel);
-            String sql = "select * from calzado";
+            String sql = "select * from productos";
             ResultSet rs = ConexionBD.Consulta(sql);
             
             String valores [] = new String [10];
@@ -759,13 +753,7 @@ private String NombreMes ()
             
             }
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
@@ -937,7 +925,7 @@ private String NombreMes ()
             String ValoresTabla [] = {"Id","Id provedor","Tipo","Color","Material","Modelo","Precio","Existencia","Numero","Descripcion"};
             DefaultTableModel.setColumnIdentifiers(ValoresTabla);
             TablaBusqueda.setModel(DefaultTableModel);
-            String sql = "select * from calzado";
+            String sql = "select * from productos";
             ResultSet rs = ConexionBD.Consulta(sql);
             
             String valores [] = new String [10];
@@ -962,13 +950,7 @@ private String NombreMes ()
             
             }
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -994,31 +976,25 @@ private String NombreMes ()
                     }
                     if (ValorSinvender == 0)
                     {
-                    String sql0 = "update calzado set stock = '"+ValorSinvender+"' where id = '"+Integer.parseInt((String) TablaVenta.getValueAt(i, 0))+"'";    
+                    String sql0 = "update productos set stock = '"+ValorSinvender+"' where id = '"+Integer.parseInt((String) TablaVenta.getValueAt(i, 0))+"'";    
                     coneccion.ejecutar(sql0);
                     }else
                     {
                         int valor = 0;
-                        String sql = "select * from calzado where id ='"+Integer.parseInt((String) TablaVenta.getValueAt(i, 0))+"';";
+                        String sql = "select * from productos where id ='"+Integer.parseInt((String) TablaVenta.getValueAt(i, 0))+"';";
                         ResultSet  busca = coneccion.Consulta(sql);
                         while (busca.next())
                         {
                         valor = busca.getInt(6);
                         }
                         int calzadoexistencianuevo = valor - Integer.parseInt((String) TablaVenta.getValueAt(i, 0));
-                        String sql1 = "update calzado set stock = '"+calzadoexistencianuevo+"' where id = '"+Integer.parseInt((String) TablaVenta.getValueAt(i, 0))+"'";
+                        String sql1 = "update productos set stock = '"+calzadoexistencianuevo+"' where id = '"+Integer.parseInt((String) TablaVenta.getValueAt(i, 0))+"'";
                         coneccion.ejecutar(sql1);
                     }
                     
                 }
             
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
@@ -1189,13 +1165,7 @@ private String NombreMes ()
                             DefaultTableModel.addRow(valores);
                         }
                 }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
             }        
     }

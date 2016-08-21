@@ -232,7 +232,7 @@ public class addproduct extends javax.swing.JInternalFrame {
         boolean var = false;  
         try {
             Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-            String sql = "select * from calzado";
+            String sql = "select * from productos";
             ResultSet rs = Coneccion.Consulta(sql);
            
             
