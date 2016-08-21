@@ -29,9 +29,11 @@ public class Resumen extends javax.swing.JInternalFrame {
     /**
      * Creates new form Reports
      */
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
     public Resumen() {
         initComponents();
-        setTitle("Resumen");
+        setTitle("RESUMEN -" + datos.ReturnDateMay("nombre"));
         Modelo();
     }
 

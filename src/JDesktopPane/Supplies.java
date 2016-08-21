@@ -27,10 +27,12 @@ public class Supplies extends javax.swing.JInternalFrame {
     /**
      * Creates new form Supplies
      */
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
     public Supplies() {
         initComponents();
         InicioTabla ();
-        setTitle("Provedores - Abarrotes 3 hermanos");
+        setTitle("PROVEDORES - " + datos.ReturnDateMay("nombre"));
     }
 
     /**
@@ -248,7 +250,7 @@ try {
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(2);
             Tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
             Tabla.getColumnModel().getColumn(2).setPreferredWidth(300);
-            String sql = "select * from provedor";
+            String sql = "select * from provedores";
             ResultSet rs = ConexionBD.Consulta(sql);
             
             String valores [] = new String [6];
@@ -303,7 +305,7 @@ try {
         if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Esta seguro que desea eliminar el provedor numero : " + (String) Tabla.getValueAt(seleccion,0),"¿Esta seguro?", 0) == 0){
         try {
             Clases.ConexionBD coneccion = new Clases.ConexionBD();
-            String sql = "delete from provedor where idprovedor = '"+Integer.parseInt((String) Tabla.getValueAt(seleccion,0))+"'";
+            String sql = "delete from provedores where idprovedor = '"+Integer.parseInt((String) Tabla.getValueAt(seleccion,0))+"'";
             coneccion.ejecutar(sql);
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Proveedor eliminado correctamente.");
         } catch (ClassNotFoundException ex) {

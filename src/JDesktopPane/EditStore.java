@@ -191,19 +191,13 @@ public class EditStore extends javax.swing.JInternalFrame {
         try {            
                 Clases.ConexionBD CBD = new Clases.ConexionBD ();
                 
-                String modificar = "update calzado set producto = '"+Producto.getText()+"'  "
+                String modificar = "update productos set nombre = '"+Producto.getText()+"'  "
                         + " , "+" descripcion = '"+TxtDescripcion.getText()+"' , "+" codigo = '"+CodigoBarra.getText()+"' , "+" precio = '"+TxtPrecio.getText()+"' , "+" stock = '"+TxtStock.getText()+"' where id = '"+Integer.parseInt(IdStore.getText())+"'";
                 CBD.ejecutar(modificar);
                 JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Correcto");
                 dispose ();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Error, no se actualizo el producto");
             }
     }//GEN-LAST:event_BotonDarDeAltaActionPerformed
 

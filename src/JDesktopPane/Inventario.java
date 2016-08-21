@@ -26,9 +26,11 @@ public class Inventario extends javax.swing.JInternalFrame {
     /**
      * Creates new form Reports
      */
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
     public Inventario() {
         initComponents();
-        setTitle("Inventario");
+        setTitle("INVENTARIO - " + datos.ReturnDateMay("nombre"));
         ChargeDate();
     }
 
@@ -128,7 +130,7 @@ public class Inventario extends javax.swing.JInternalFrame {
     private void ChargeDate() {
             try {
                 Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-                String sql = "select * from calzado";
+                String sql = "select * from productos";
                 ResultSet rs = Coneccion.Consulta(sql);
                 DefaultTableModel DefaultTableModel = new DefaultTableModel(){
                     public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
@@ -137,7 +139,7 @@ public class Inventario extends javax.swing.JInternalFrame {
                 String ValoresTabla [] = {"Id","Producto","Descripcion","Codigo de barra","Precio","Stock","Vendidos","Total"};
                 DefaultTableModel.setColumnIdentifiers(ValoresTabla);
                 TablaBusqueda.setModel(DefaultTableModel);
-                TablaBusqueda.getColumnModel().getColumn(0).setPreferredWidth(3);
+                TablaBusqueda.getColumnModel().getColumn(0).setPreferredWidth(50);
                 TablaBusqueda.getColumnModel().getColumn(1).setPreferredWidth(300);
                 TablaBusqueda.getColumnModel().getColumn(2).setPreferredWidth(300);                
                 String valores [] = new String [8];
@@ -156,13 +158,7 @@ public class Inventario extends javax.swing.JInternalFrame {
                             DefaultTableModel.addRow(valores);
                         }
                 }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
             }
     }

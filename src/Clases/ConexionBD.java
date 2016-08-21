@@ -24,7 +24,7 @@ public ConexionBD () throws ClassNotFoundException,SQLException,InstantiationExc
 
 public void conectar() throws SQLException{
         //datos necesarios para la conexion
-    String URL_bd ="jdbc:mysql://localhost:3306/FrutasYverdurasCabada";
+    String URL_bd ="jdbc:mysql://localhost:3306/PointSaleGeneric";
     String usuario="root";
     String contraseña="root";
     

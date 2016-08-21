@@ -21,10 +21,12 @@ public class AddSupplies extends javax.swing.JInternalFrame {
     /**
      * Creates new form AddSupplies
      */
-        public AddSupplies() {
-        initComponents();
-            setTitle("Agregar provedores");
-        Id();
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
+    public AddSupplies() {
+    initComponents();
+    setTitle("AGREGAR PROVEDOR - " + datos.ReturnDateMay("nombre"));
+    Id();
     }
 
     /**
@@ -244,21 +246,12 @@ public class AddSupplies extends javax.swing.JInternalFrame {
         try {
                 
                 Clases.ConexionBD Conexion = new Clases.ConexionBD();
-                String sql = "insert into `provedor`(`idprovedor`,`empresa`,`direccion`,`email`,`telefono`,`rfc`) values ('"+Integer.parseInt(IdText.getText())+"','"+Empresa.getText()+"','"+Direccion.getText()+"','"+Email.getText()+"','"+telefono.getText()+"' , '"+rfc.getText()+"')";
+                String sql = "insert into `provedores`(`idprovedor`,`empresa`,`direccion`,`email`,`telefono`,`rfc`) values ('"+Integer.parseInt(IdText.getText())+"','"+Empresa.getText()+"','"+Direccion.getText()+"','"+Email.getText()+"','"+telefono.getText()+"' , '"+rfc.getText()+"')";
                 Conexion.ejecutar(sql);
                 Limpiar();
                 JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Provedor agregado correctamente");
                 dispose();
-            } catch (ClassNotFoundException ex) {
-                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Chispas ! - Algo salio mal, trate de nuevo");
-                Limpiar();
-            } catch (SQLException ex) {
-                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Chispas ! - Algo salio mal, trate de nuevo");
-                Limpiar();
-            } catch (InstantiationException ex) {
-                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Chispas ! - Algo salio mal, trate de nuevo");
-                Limpiar();
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Chispas ! - Algo salio mal, trate de nuevo");
                 Limpiar();
             }
@@ -298,7 +291,7 @@ public class AddSupplies extends javax.swing.JInternalFrame {
         for (;id != compara ; ){
         try {
             Clases.ConexionBD  conexion = new Clases.ConexionBD ();
-            String sql = "select * from provedor where idprovedor ='"+id+"';";
+            String sql = "select * from provedores where idprovedor ='"+id+"';";
             ResultSet Ingresa = conexion.Consulta(sql);
    
             while (Ingresa.next()){
@@ -311,13 +304,7 @@ public class AddSupplies extends javax.swing.JInternalFrame {
             break;
             }
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -330,5 +317,6 @@ public class AddSupplies extends javax.swing.JInternalFrame {
         Direccion.setText("");
         Email.setText("");
         telefono.setText("");
+        rfc.setText("");
     }
 }

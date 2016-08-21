@@ -198,7 +198,7 @@ public class addproduct extends javax.swing.JInternalFrame {
            
             Clases.ConexionBD coneccion = new Clases.ConexionBD();
             
-            String insert = "INSERT INTO `calzado`(`producto`,`descripcion`, `codigo`, `precio`, `stock`,`vendidos` ) "
+            String insert = "INSERT INTO `productos`(`nombre`,`descripcion`, `codigo`, `precio`, `stock`,`vendidos` ) "
                     + "VALUES "
                     + "('"+TxtProducto.getText()+"','"+TxtDescripcion.getText()+"','"+TxtCodigoBarra.getText()+"','"+Float.parseFloat(TxtPrecio.getText())+"','"+Integer.parseInt(TxtStock.getText())+"','"+"0"+"')";
                  coneccion.ejecutar(insert);

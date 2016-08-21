@@ -31,9 +31,11 @@ public class Store extends javax.swing.JInternalFrame {
      */
     DefaultTableModel table = new DefaultTableModel ();
     String NivelDeUsuario , UsuarioDeTrabajador;
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
     public Store() {
         initComponents();
-        setTitle("Stock - Abarrotes 3 hermanos");
+        this.setTitle("STOCK - " + datos.ReturnDateMay("nombre"));
         Muestra();      
     }
 
@@ -354,7 +356,7 @@ public class Store extends javax.swing.JInternalFrame {
             Tabla.getColumnModel().getColumn(1).setPreferredWidth(250);
             Tabla.getColumnModel().getColumn(2).setPreferredWidth(400);
             Tabla.getTableHeader().setReorderingAllowed(false);
-            String sql = "select * from calzado";
+            String sql = "select * from productos";
             ResultSet rs = ConexionBD.Consulta(sql);
             
             String valores [] = new String [6];
@@ -449,17 +451,11 @@ public class Store extends javax.swing.JInternalFrame {
         if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Esta seguro que desea eliminar el producto : " + (String) Tabla.getValueAt(seleccion,1),"¿Esta seguro?", 0) == 0){
         try {
             Clases.ConexionBD coneccion = new Clases.ConexionBD();
-            String sql = "delete from calzado where id = '"+Integer.parseInt((String) Tabla.getValueAt(seleccion,0))+"'";
+            String sql = "delete from productos where id = '"+Integer.parseInt((String) Tabla.getValueAt(seleccion,0))+"'";
             coneccion.ejecutar(sql);
             BtnUpdate.doClick();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Error, el producto no se elimino.");
         }
         }
         

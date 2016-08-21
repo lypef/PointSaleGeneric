@@ -27,12 +27,11 @@ public class Desktop extends javax.swing.JFrame {
      * Creates new form Desktop
      */
     String NivelDeUsuario,UsuarioDeTrabajador;
+    Clases.ReturnDate datos = new Clases.ReturnDate();
     
- 
-
     public Desktop() {
             initComponents();
-            setTitle("ABARROTES 3 HERMANOS");
+            setTitle(datos.ReturnDateMay("nombre"));
             setLocationRelativeTo(null);
             setAlwaysOnTop(true);
             this.setResizable(false);
@@ -74,11 +73,13 @@ public class Desktop extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem9 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -89,7 +90,6 @@ public class Desktop extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -215,6 +215,9 @@ public class Desktop extends javax.swing.JFrame {
 
         jMenu3.setText("Archivo");
 
+        jMenu5.setText("Configuracion");
+        jMenu3.add(jMenu5);
+
         jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jMenuItem8.setText("Limpiar");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -243,6 +246,14 @@ public class Desktop extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem10);
+
+        jMenuItem7.setText("Acerca de");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
 
         jMenuBar2.add(jMenu3);
 
@@ -308,15 +319,6 @@ public class Desktop extends javax.swing.JFrame {
         jMenuBar2.add(jMenu2);
 
         jMenu4.setText("Ayuda");
-
-        jMenuItem7.setText("Acerca de");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem7);
-
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
@@ -405,8 +407,7 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Software desarrollado por \n ISC: Francisco Eduardo Ascencio D. \n para: ABARROTES 3 HERMANOS \n version 2.0"
-                    + "\n www.cyberchoapas.com");
+        JOptionPane.showMessageDialog(null, "PUNTO DE VENTA DESARROLLADO POR:\n"+datos.ReturnDateMay("desarrollador")+"\nPARA: "+datos.ReturnDateMay("nombre")+"\nVERSION: "+datos.ReturnDateMay("version")+"\n"+datos.ReturnDateMay("web")+"");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
@@ -456,6 +457,7 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;

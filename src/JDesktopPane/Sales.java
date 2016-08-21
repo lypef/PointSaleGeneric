@@ -42,11 +42,11 @@ public class Sales extends javax.swing.JInternalFrame {
         String ap = Integer.toString(fecha.get(Calendar.AM_PM));
         String NivelDeUsuario,UsuarioDeTrabajador;
         int j ;
-    
+        Clases.ReturnDate datos = new Clases.ReturnDate();
 
     public Sales () {
         initComponents();
-        setTitle("Ventas - Abarrotes 3 hermanos");
+        setTitle("VENTAS - " + datos.ReturnDateMay("nombre"));
         DatosComboBoxTipo ();
         DateSearchTable ();
         DateSearchTableVenta ();
@@ -385,11 +385,6 @@ public class Sales extends javax.swing.JInternalFrame {
         
         SearchForProduct();
         
-        if (TablaBusqueda.getRowCount() == 0)
-        {
-            SearchForDescrip();
-        }
-        
     }//GEN-LAST:event_BtnSearchProductActionPerformed
 
     private void ActionSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActionSearchActionPerformed
@@ -658,7 +653,7 @@ private String NombreMes ()
     public void DateSearchTable() {
             try {
                 Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-                String sql = "select * from calzado";
+                String sql = "select * from productos";
                 ResultSet rs = Coneccion.Consulta(sql);
                 DefaultTableModel DefaultTableModel = new DefaultTableModel(){
                     public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
@@ -1124,7 +1119,7 @@ private String NombreMes ()
     DateSearchTable ();
             try {
                 Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-                String sql = "select * from calzado where producto like '%"+TxtBarCode.getText()+"%'";
+                String sql = "select * from productos where nombre like '%"+TxtBarCode.getText()+"%' or descripcion like '%"+TxtBarCode.getText()+"%'";
                 ResultSet rs = Coneccion.Consulta(sql);
                 DefaultTableModel DefaultTableModel = new DefaultTableModel(){
                     public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
@@ -1168,7 +1163,7 @@ private String NombreMes ()
     DateSearchTable ();
             try {
                 Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-                String sql = "select * from calzado where descripcion like '%"+TxtBarCode.getText()+"%'";
+                String sql = "select * from productos where descripcion like '%"+TxtBarCode.getText()+"%'";
                 ResultSet rs = Coneccion.Consulta(sql);
                 DefaultTableModel DefaultTableModel = new DefaultTableModel(){
                     public boolean isCellEditable(int rowIndex,int columnIndex){return false;}

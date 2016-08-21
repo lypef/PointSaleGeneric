@@ -24,9 +24,11 @@ public class EditSupplies extends javax.swing.JInternalFrame {
     /**
      * Creates new form AddStaff
      */
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
     public EditSupplies() {
         initComponents();
-        setTitle("Agregar caracteristicas");
+        setTitle("ACTUALIZAR PROVEDOR - " + datos.ReturnDateMay("nombre"));
     }
 
     /**
@@ -204,20 +206,14 @@ public class EditSupplies extends javax.swing.JInternalFrame {
             Email.setText(Email.getText().toUpperCase());
             
             Clases.ConexionBD coneccion = new Clases.ConexionBD();
-            String sql = "update provedor set empresa = '"+Empresa.getText()+"' , "+" direccion = '"+
+            String sql = "update provedores set empresa = '"+Empresa.getText()+"' , "+" direccion = '"+
                     Direccion.getText()+"' , "+" email = '"+Email.getText()+"' , "+" telefono = '"+
                     Telefono.getText()+"' , "+" rfc = '"+Rfc.getText()+"' where idprovedor = '"+Integer.parseInt(ID.getText())+"'";
             coneccion.ejecutar(sql);
             dispose();
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Editado correctamente");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditSupplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EditSupplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(EditSupplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(EditSupplies.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error, el provedor no se actualizo.");
         }
        
     }//GEN-LAST:event_BotonDarDeAltaActionPerformed
