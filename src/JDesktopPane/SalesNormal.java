@@ -303,15 +303,21 @@ public class SalesNormal extends javax.swing.JInternalFrame {
             Sales sales = new Sales();
             sales.DateSearchTable();
             
-            if (datos.ReturnDateMay("ticket") == "1")
+            System.err.println(datos.ReturnDateMay("ticket"));
+            System.err.println(datos.ReturnDateMay("nameprint"));
+            System.err.println(datos.ReturnDateMay("ticketcajon"));
+            
+            if ("1".equals(datos.ReturnDateMay("ticket")))
             {
                 PrintOnlyTicket(datos.ReturnDateMay("nameprint"));
             }
-            else if (datos.ReturnDateMay("cajon") == "1")
+            
+            if ("1".equals(datos.ReturnDateMay("cajon")))
             {
                 OpenBox(datos.ReturnDateMay("nameprint"));
             }
-            else if (datos.ReturnDateMay("ticketcajon") == "1")
+            
+            if ("1".equals(datos.ReturnDateMay("ticketcajon")))
             {
                 Print(datos.ReturnDateMay("nameprint"));
             }

@@ -527,7 +527,7 @@ private void Disminuye (int i)
         }
         }
     }else {
-    JOptionPane.showMessageDialog(null,"Ya no tenemos mas calzado del modelo "+ TablaBusqueda.getValueAt(i, 5)
+    JOptionPane.showMessageDialog(null,"Ya no tenemos mas producto del modelo "+ TablaBusqueda.getValueAt(i, 5)
             +" en almacen");
     }
     }
@@ -1124,13 +1124,7 @@ private String NombreMes ()
                             DefaultTableModel.addRow(valores);
                         }
                 }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
             }
     }

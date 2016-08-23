@@ -41,13 +41,7 @@ public class Desktop extends javax.swing.JFrame {
             JDialog.setDefaultLookAndFeelDecorated(true);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Desktop.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Desktop.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Desktop.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Desktop.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -73,13 +67,13 @@ public class Desktop extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem9 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -215,9 +209,6 @@ public class Desktop extends javax.swing.JFrame {
 
         jMenu3.setText("Archivo");
 
-        jMenu5.setText("Configuracion");
-        jMenu3.add(jMenu5);
-
         jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jMenuItem8.setText("Limpiar");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -254,6 +245,14 @@ public class Desktop extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem7);
+
+        jMenuItem11.setText("Configuracion");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem11);
 
         jMenuBar2.add(jMenu3);
 
@@ -410,6 +409,10 @@ public class Desktop extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "PUNTO DE VENTA DESARROLLADO POR:\n"+datos.ReturnDateMay("desarrollador")+"\nPARA: "+datos.ReturnDateMay("nombre")+"\nVERSION: "+datos.ReturnDateMay("version")+"\n"+datos.ReturnDateMay("web")+"");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        CallConfig();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -457,10 +460,10 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -567,30 +570,30 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
     {
     if (NivelDeUsuario.equalsIgnoreCase("root"))
         {
-        Supplies Supplies = new Supplies ();
-        Desktop.Escritorio.add(Supplies);
-        Supplies.setLocation(Desktop.Escritorio.getWidth() / 2 -Supplies.getWidth() / 2, Desktop.Escritorio.getHeight() / 2 - Supplies.getHeight() / 2);
-        Supplies.toFront();
-        Supplies.show();
+            Supplies Supplies = new Supplies ();
+            Desktop.Escritorio.add(Supplies);
+            Supplies.setLocation(Desktop.Escritorio.getWidth() / 2 -Supplies.getWidth() / 2, Desktop.Escritorio.getHeight() / 2 - Supplies.getHeight() / 2);
+            Supplies.toFront();
+            Supplies.show();
         }else
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
         }
     }
 
     private void CallFeatures() {
         if (NivelDeUsuario.equalsIgnoreCase("root"))
         {
-        Features Features = new Features ();
-        Desktop.Escritorio.add(Features);
-        Features.NivelDeUsuario = NivelDeUsuario;
-        Features.NombreDeUsuario = UsuarioDeTrabajador;
-        Features.setLocation(Desktop.Escritorio.getWidth() / 2 - Features.getWidth() / 2, Desktop.Escritorio.getHeight() / 2 - Features.getHeight() / 2);
-        Features.toFront();
-        Features.show();
+            Features Features = new Features ();
+            Desktop.Escritorio.add(Features);
+            Features.NivelDeUsuario = NivelDeUsuario;
+            Features.NombreDeUsuario = UsuarioDeTrabajador;
+            Features.setLocation(Desktop.Escritorio.getWidth() / 2 - Features.getWidth() / 2, Desktop.Escritorio.getHeight() / 2 - Features.getHeight() / 2);
+            Features.toFront();
+            Features.show();
         }else
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Acceso negado");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Acceso negado");
         }
     }
 
@@ -602,53 +605,71 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
     }
 
     private void CallExit() {
-    if (JOptionPane.showConfirmDialog(rootPane,"¿Esta seguro que desea salir?","Exit",0)==0)
+        if (JOptionPane.showConfirmDialog(rootPane,"¿Esta seguro que desea salir?","Exit",0)==0)
+        {
+            System.exit(1);
+        }
+    }
+
+    private void CallFacturas() 
     {
-        System.exit(1);
-    }
-    }
-
-    private void CallFacturas() {
-    JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Modulo aun no programado");
+        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Modulo aun no programado");
     }
 
-    private void CallConsultas() {
+    private void CallConsultas() 
+    {
     
-    if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-    {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
-    }else
-    {
-    Resumen Reports = new Resumen ();
-    Desktop.Escritorio.add(Reports);
-    Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
-    Reports.show();
-    }
+        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+        }else
+        {
+            Resumen Reports = new Resumen ();
+            Desktop.Escritorio.add(Reports);
+            Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
+            Reports.show();
+        }
     }
 
-    private void CallInventario() {
-    if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
+    private void CallInventario() 
     {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
-    }else
-    {
-    Inventario Reports = new Inventario ();
-    Desktop.Escritorio.add(Reports);
-    Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
-    Reports.show();
+        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+        }else
+        {
+            Inventario Reports = new Inventario ();
+            Desktop.Escritorio.add(Reports);
+            Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
+            Reports.show();
+        }
     }
-    }
+    
     private void CallStoreOrder() 
     {
-    if (NivelDeUsuario.equalsIgnoreCase("root"))
-    {
-    StoreOrder StoreOrder = new StoreOrder ();
-    Desktop.Escritorio.add(StoreOrder);
-    StoreOrder.setLocation(Desktop.Escritorio.getWidth() / 2 - StoreOrder.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - StoreOrder.getHeight() / 2);
-    StoreOrder.show();
-    }else
-    {
-    JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
+        if (NivelDeUsuario.equalsIgnoreCase("root"))
+        {
+            StoreOrder StoreOrder = new StoreOrder ();
+            Desktop.Escritorio.add(StoreOrder);
+            StoreOrder.setLocation(Desktop.Escritorio.getWidth() / 2 - StoreOrder.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - StoreOrder.getHeight() / 2);
+            StoreOrder.show();
+        }else
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
+        }
     }
+    
+    private void CallConfig() 
+    {
+        if (NivelDeUsuario.equalsIgnoreCase("root"))
+        {
+            Config Config = new Config ();
+            Desktop.Escritorio.add(Config);
+            Config.setLocation(Desktop.Escritorio.getWidth() / 2 - Config.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Config.getHeight() / 2);
+            Config.show();
+        }else
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
+        }
     }
 }
