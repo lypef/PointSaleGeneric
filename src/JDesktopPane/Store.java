@@ -400,7 +400,7 @@ public class Store extends javax.swing.JInternalFrame {
     {
                     try {
             Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-            String sql = "select * from calzado";
+            String sql = "select * from productos";
             ResultSet rs = Coneccion.Consulta(sql);
             DefaultTableModel DefaultTableModel = new DefaultTableModel(){
             public boolean isCellEditable(int rowIndex,int columnIndex){return false;} 

@@ -18,16 +18,19 @@ import javax.swing.JOptionPane;
  *
  * @author Lypef
  */
+
 public class Login extends javax.swing.JFrame {
     
     /**
      * Creates new form Login
      */
     Desktop Desktop = new Desktop ();
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("ABARROTES 3 HERMANOS");
+        setTitle(datos.ReturnDateMay("nombre"));
         
     }
 

@@ -5,6 +5,12 @@
  */
 package JDesktopPane;
 
+import Clases.ConexionBD;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lypef
@@ -14,8 +20,33 @@ public class Config extends javax.swing.JInternalFrame {
     /**
      * Creates new form Config
      */
+    Clases.ReturnDate datos = new Clases.ReturnDate();
+    
     public Config() {
         initComponents();
+        setTitle("CONFIGURACION - " + datos.ReturnDateMay("nombre"));
+        TxtName.setText(datos.ReturnDateMay("nombre"));
+        TxtDireccion.setText(datos.ReturnDateMay("direccion"));
+        TxtRfc.setText(datos.ReturnDateMay("rfc"));
+        TxtTelefono.setText(datos.ReturnDateMay("telefono"));
+        TxtImpresora.setText(datos.ReturnDateMay("nameprint"));
+        
+        if ("1".equals(datos.ReturnDateMay("ticket")))
+        {
+            RBticket.setSelected(true);
+        }
+        else if ("1".equals(datos.ReturnDateMay("cajon")))
+        {
+            RBcajon.setSelected(true);
+        }
+        else if ("1".equals(datos.ReturnDateMay("ticketcajon")))
+        {
+            RBticketcajon.setSelected(true);
+        }else
+        {
+            RBnoIMP.setSelected(true);
+        }
+        
     }
 
     /**
@@ -32,10 +63,145 @@ public class Config extends javax.swing.JInternalFrame {
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
         buttonGroup5 = new javax.swing.ButtonGroup();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        TxtName = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        TxtDireccion = new javax.swing.JTextField();
+        TxtTelefono = new javax.swing.JTextField();
+        TxtRfc = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        RBticketcajon = new javax.swing.JRadioButton();
+        RBticket = new javax.swing.JRadioButton();
+        RBcajon = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
+        TxtImpresora = new javax.swing.JTextField();
+        RBnoIMP = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+
+        jTabbedPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel1.setText("Nombre:");
+
+        TxtName.setText("jTextField1");
+
+        jLabel2.setText("Direccion:");
+
+        jLabel3.setText("Telefono:");
+
+        jLabel4.setText("Rfc:");
+
+        TxtDireccion.setText("jTextField1");
+
+        TxtTelefono.setText("jTextField1");
+
+        TxtRfc.setText("jTextField1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel2))
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TxtRfc)
+                    .addComponent(TxtName)
+                    .addComponent(TxtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                    .addComponent(TxtTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TxtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtRfc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("General", jPanel1);
+
+        buttonGroup1.add(RBticketcajon);
+        RBticketcajon.setText("Ticket y cajon");
+
+        buttonGroup1.add(RBticket);
+        RBticket.setText("Imprimir solo ticket");
+
+        buttonGroup1.add(RBcajon);
+        RBcajon.setText("Abrir solo cajon");
+
+        jLabel5.setText("Impresora");
+
+        TxtImpresora.setText("jTextField1");
+
+        buttonGroup1.add(RBnoIMP);
+        RBnoIMP.setText("No utilizar impresora de tickets");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtImpresora, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RBticket)
+                            .addComponent(RBcajon)
+                            .addComponent(RBticketcajon)
+                            .addComponent(RBnoIMP))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(TxtImpresora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(RBticketcajon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RBticket)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RBcajon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RBnoIMP)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Impresion", jPanel2);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Save.png"))); // NOI18N
         jButton1.setText("Guardar cambios");
@@ -45,62 +211,90 @@ public class Config extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Ticket y cajon");
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Imprimir ticket");
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Abrir cajon");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton1))))
+                    .addComponent(jTabbedPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
-                .addGap(276, 276, 276)
-                .addComponent(jButton1))
+                .addComponent(jButton1)
+                .addGap(6, 6, 6))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+        try {
+            int Ticket = 0, cajon = 0, ticketcajon = 0;
+            
+            if (RBticket.isSelected() == true)
+            {
+                Ticket = 1;
+            }
+            else if (RBcajon.isSelected() == true)
+            {
+                cajon = 1;
+            }
+            else if (RBticketcajon.isSelected() == true)
+            {
+                ticketcajon = 1;
+            }
+            else 
+            {
+                Ticket = 0;
+                cajon = 0;
+                ticketcajon = 0;
+            }
+                    
+            String Sql = "update config set nombre = '"+TxtName.getText().toUpperCase()+"', rfc = '"+TxtRfc.getText().toUpperCase()+"', direccion = '"+TxtDireccion.getText().toUpperCase()+"', telefono = '"+TxtTelefono.getText().toUpperCase()+"', ticket =  '"+Ticket+"', cajon = '"+ cajon +"', ticketcajon = '"+ ticketcajon +"', nameprint = '"+ TxtImpresora.getText() +"'  where id = 1 ";
+            
+            ConexionBD BD = new ConexionBD ();
+            BD.ejecutar(Sql);
+            this.dispose();
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Cambios guardados correctamente.", datos.ReturnDateMay("nombre"), 1);
+            
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error !, No se pudieron gusrdar los cambios", datos.ReturnDateMay("nombre"), 1);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton RBcajon;
+    private javax.swing.JRadioButton RBnoIMP;
+    private javax.swing.JRadioButton RBticket;
+    private javax.swing.JRadioButton RBticketcajon;
+    private javax.swing.JTextField TxtDireccion;
+    private javax.swing.JTextField TxtImpresora;
+    private javax.swing.JTextField TxtName;
+    private javax.swing.JTextField TxtRfc;
+    private javax.swing.JTextField TxtTelefono;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JButton jButton1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 }

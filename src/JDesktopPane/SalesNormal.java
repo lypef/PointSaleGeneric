@@ -311,13 +311,11 @@ public class SalesNormal extends javax.swing.JInternalFrame {
             {
                 PrintOnlyTicket(datos.ReturnDateMay("nameprint"));
             }
-            
-            if ("1".equals(datos.ReturnDateMay("cajon")))
+            else if ("1".equals(datos.ReturnDateMay("cajon")))
             {
                 OpenBox(datos.ReturnDateMay("nameprint"));
             }
-            
-            if ("1".equals(datos.ReturnDateMay("ticketcajon")))
+            else if ("1".equals(datos.ReturnDateMay("ticketcajon")))
             {
                 Print(datos.ReturnDateMay("nameprint"));
             }
@@ -515,8 +513,8 @@ public class SalesNormal extends javax.swing.JInternalFrame {
     private void Print(String printName) throws PrintException 
     {
         int x = TablaNotaVenta.getRowCount() -1;
-        String cadena = ""+(char)27+(char)112+(char)0+(char)10+(char)100+"\n           ABARROTES\n           3 HERMANOS \n ----------------------------- \n "
-                + "RFC: DOHF671205Q25 \n Direccion: \n ALAMO # 145, COL. HUAPACALITO \n Fecha: "+fecha()+"\n Hora: "+Hora()+"\n -----------------------------\n";    
+        String cadena = "\n"+datos.ReturnDateMay("nombre")+" \n ----------------------------- \n "
+                + "RFC: "+ datos.ReturnDateMay("rfc") +" \n Direccion: \n "+ datos.ReturnDateMay("direccion") +"\n Telefono: "+ datos.ReturnDateMay("telefono") +"\n Fecha: "+fecha()+"\n Hora: "+Hora()+"\n -----------------------------\n";
         
         while (x >= 0)
         {
@@ -553,8 +551,8 @@ public class SalesNormal extends javax.swing.JInternalFrame {
     private void PrintOnlyTicket(String printName) throws PrintException 
     {
         int x = TablaNotaVenta.getRowCount() -1;
-        String cadena = "\n           ABARROTES\n           3 HERMANOS \n ----------------------------- \n "
-                + "RFC: DOHF671205Q25 \n Direccion: \n ALAMO # 145, COL. HUAPACALITO \n Fecha: "+fecha()+"\n Hora: "+Hora()+"\n -----------------------------\n";    
+        String cadena = "\n"+datos.ReturnDateMay("nombre")+" \n ----------------------------- \n "
+                + "RFC: "+ datos.ReturnDateMay("rfc") +" \n Direccion: \n "+ datos.ReturnDateMay("direccion") +"\n Telefono: "+ datos.ReturnDateMay("telefono") +"\n Fecha: "+fecha()+"\n Hora: "+Hora()+"\n -----------------------------\n";    
         
         while (x >= 0)
         {
