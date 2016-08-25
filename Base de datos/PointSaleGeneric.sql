@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-08-2016 a las 07:38:31
+-- Tiempo de generación: 25-08-2016 a las 06:07:38
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.5.37
 
@@ -57,15 +57,18 @@ CREATE TABLE `config` (
   `ticket` tinyint(1) NOT NULL,
   `cajon` tinyint(1) NOT NULL,
   `ticketcajon` tinyint(1) NOT NULL,
-  `nameprint` varchar(300) NOT NULL
+  `nameprint` varchar(300) NOT NULL,
+  `msg1` varchar(300) NOT NULL,
+  `msg2` varchar(300) NOT NULL,
+  `msg3` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `config`
 --
 
-INSERT INTO `config` (`id`, `nombre`, `rfc`, `direccion`, `telefono`, `desarrollador`, `version`, `web`, `ticket`, `cajon`, `ticketcajon`, `nameprint`) VALUES
-(1, 'SYSTEMA DEMO', 'ERWQ56568A', 'DIRECCION DEMO', 18009966, 'ISC. FRANCISCO EDUARDO ASCECNCIO DOMINGUEZ', '2.0', 'WWW.CYBERCHOAPAS.COM', 0, 0, 0, 'CUPS-PDF');
+INSERT INTO `config` (`id`, `nombre`, `rfc`, `direccion`, `telefono`, `desarrollador`, `version`, `web`, `ticket`, `cajon`, `ticketcajon`, `nameprint`, `msg1`, `msg2`, `msg3`) VALUES
+(1, 'SYSTEMA DEMO', 'ERWQ56568A', 'DIRECCION DEMO', 18009966, 'ISC. FRANCISCO EDUARDO ASCECNCIO DOMINGUEZ', '2.0', 'WWW.CYBERCHOAPAS.COM', 0, 0, 0, 'CUPS-PDF', ':D', '', '');
 
 -- --------------------------------------------------------
 

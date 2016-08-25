@@ -522,7 +522,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
             x --;
         }
         
-        cadena += "(+)EXTRAS: $ " + TxtExtras.getText() + "\n\nTotal: $" + TxtTotal.getText()+" \nPaga con: "+ TxtPagaCon.getText() +"\nCambio: "+ TxtCambio.getText() +"\n-----------------------------\nCONTAMOS CON RECARGAS TELCEL,\nMOVISTAR, UNEFON,IUSACELL,NEXTEL\n       **SIN COMISION** \n ---------------------------- \n   Sistemas de ventas y mas\n     www.cyberchoapas.com \n\n\n ----------------------------\n";
+        cadena += "(+)EXTRAS: $ " + TxtExtras.getText() + "\n\nTotal: $" + TxtTotal.getText()+" \nPaga con: "+ TxtPagaCon.getText() +"\nCambio: "+ TxtCambio.getText() +"\n-----------------------------\n"+datos.ReturnDateMay("msg1")+"\n"+datos.ReturnDateMay("msg2")+"\n       **"+datos.ReturnDateMay("msg3")+"** \n ---------------------------- \n   Sistemas de ventas y mas\n     www.cyberchoapas.com \n\n\n ----------------------------\n";
         
         //
         
@@ -560,7 +560,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
             x --;
         }
         
-        cadena += "(+)EXTRAS: $ " + TxtExtras.getText() + "\n\nTotal: $" + TxtTotal.getText()+" \nPaga con: "+ TxtPagaCon.getText() +"\nCambio: "+ TxtCambio.getText() +"\n-----------------------------\nCONTAMOS CON RECARGAS TELCEL,\nMOVISTAR, UNEFON,IUSACELL,NEXTEL\n       **SIN COMISION** \n ---------------------------- \n   Sistemas de ventas y mas\n     www.cyberchoapas.com \n\n\n ----------------------------\n";
+        cadena += "(+)EXTRAS: $ " + TxtExtras.getText() + "\n\nTotal: $" + TxtTotal.getText()+" \nPaga con: "+ TxtPagaCon.getText() +"\nCambio: "+ TxtCambio.getText() +"\n-----------------------------\n"+datos.ReturnDateMay("msg1")+"\n"+datos.ReturnDateMay("msg2")+"\n       **"+datos.ReturnDateMay("msg3")+"** \n ---------------------------- \n   Sistemas de ventas y mas\n     www.cyberchoapas.com \n\n\n ----------------------------\n";
         
         //
         
