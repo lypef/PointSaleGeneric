@@ -374,7 +374,7 @@ public class Sales extends javax.swing.JInternalFrame {
         updatetotal();
         if (Double.parseDouble(BtnTotal.getText()) > 0 )
         {
-            VentaNormal();        
+            VentaNormal();
         }else
         {
         JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"AUN NO EXISTEN CONTENIDOS PARA VENDER.");
@@ -653,7 +653,7 @@ private String NombreMes ()
     public void DateSearchTable() {
             try {
                 Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-                String sql = "select * from productos";
+                String sql = "SELECT * FROM `productos` WHERE stock > 0";
                 ResultSet rs = Coneccion.Consulta(sql);
                 DefaultTableModel DefaultTableModel = new DefaultTableModel(){
                     public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
@@ -1051,7 +1051,7 @@ private String NombreMes ()
         TxtExtras.setText(TxtExtras.getText().replace(" ", ""));
         if (TxtExtras.getText().equalsIgnoreCase(""))
         {
-         TxtExtras.setText("0.0");
+         TxtExtras.setText("0.00");
         }
         
         DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
