@@ -900,7 +900,7 @@ private String NombreMes ()
                     vartmp +=  Double.parseDouble(numerosComoArray[i]);
                 }
             //
-            SalesNormal.Montos(Double.parseDouble(BtnTotal.getText()), String.valueOf(vartmp) ,MonDePago);
+            SalesNormal.Montos(Double.parseDouble(BtnTotal.getText().replace(" ","").replace(",", ".")), String.valueOf(vartmp) ,MonDePago);
             CancelSale();
             DateSearchTable();
             Desktop.Escritorio.add(SalesNormal);

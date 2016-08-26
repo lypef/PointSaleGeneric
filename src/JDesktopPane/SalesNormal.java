@@ -411,8 +411,8 @@ public class SalesNormal extends javax.swing.JInternalFrame {
         DecimalFormat format = new DecimalFormat("0.00");
         TxtConsumo.setText(String.valueOf( total - Double.parseDouble(extras)));
         TxtTotal.setText(String.valueOf(total));
-        TxtPagaCon.setText(String.valueOf(format.format(PagaCon)));
-        TxtCambio.setText(String.valueOf(format.format(PagaCon - total)));
+        TxtPagaCon.setText(format.format(PagaCon));
+        TxtCambio.setText(format.format(PagaCon - total));
         
         if (!extras.equalsIgnoreCase("$ Extras"))
         {
