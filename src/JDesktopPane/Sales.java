@@ -864,14 +864,16 @@ private String NombreMes ()
         
         String pago = String.valueOf(JOptionPane.showInternalInputDialog(Desktop.Escritorio,"¿Con cuanto paga el cliente ? Monto: " + BtnTotal.getText()));
         
-        String pagotmp = pago.replace(" ","");
+        String pagotmp = pago.replace(" ","").replace(",", ".");
+        
         if (pagotmp.equals(""))
         {
-            pagotmp = BtnTotal.getText();
+            pagotmp = BtnTotal.getText().replace(" ","").replace(",", ".");
         }
-        double MonDePago = Double.parseDouble(pagotmp.replace(",", "."));
         
-        if (MonDePago >= Double.parseDouble(BtnTotal.getText()))
+        double MonDePago = Double.parseDouble(pagotmp);
+        
+        if (MonDePago >= Double.parseDouble(BtnTotal.getText().replace(" ","").replace(",", ".")))
         {
             SalesNormal SalesNormal = new SalesNormal ();
             for (int i = 0 ; i < TablaVenta.getRowCount() ; i++)
