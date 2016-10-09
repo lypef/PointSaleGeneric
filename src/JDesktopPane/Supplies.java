@@ -69,6 +69,11 @@ public class Supplies extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabla);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Add.png"))); // NOI18N
@@ -197,14 +202,17 @@ public class Supplies extends javax.swing.JInternalFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
-            MessageFormat Header = new MessageFormat("LISTADO DE PROVEEDORES");
-            Tabla.print(JTable.PrintMode.FIT_WIDTH, Header, null, false, null, isSelected);
+            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
+            {
+                MessageFormat Header = new MessageFormat("LISTADO DE PROVEEDORES");
+                Tabla.print(JTable.PrintMode.FIT_WIDTH, Header, null, false, null, isSelected);
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Hecho");
+            }
         } catch (PrinterException ex) {
             Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
         } catch (HeadlessException ex) {
             Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Hecho");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -225,6 +233,13 @@ public class Supplies extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void TablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMousePressed
+        if (evt.getClickCount() == 2)
+        {
+            Calledit();
+        }
+    }//GEN-LAST:event_TablaMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
@@ -241,7 +256,10 @@ public class Supplies extends javax.swing.JInternalFrame {
     {
 try {
             Clases.ConexionBD ConexionBD = new Clases.ConexionBD();
-            DefaultTableModel DefaultTableModel = new DefaultTableModel();
+            
+            DefaultTableModel DefaultTableModel = new DefaultTableModel(){
+            public boolean isCellEditable(int rowIndex,int columnIndex){return false;} 
+            };
             
             String ValoresTabla [] = {"Id provedor","Empresa","Direccion","Email","Telefono","Rfc"};
             DefaultTableModel.setColumnIdentifiers(ValoresTabla);

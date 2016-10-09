@@ -116,7 +116,10 @@ public class Inventario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
-       Print();
+        if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
+        {
+           Print();
+        }
     }//GEN-LAST:event_ImprimirActionPerformed
 
 

@@ -122,6 +122,11 @@ public class Sales extends javax.swing.JInternalFrame {
 
             }
         ));
+        TablaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaBusquedaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaBusqueda);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Remove.png"))); // NOI18N
@@ -143,6 +148,11 @@ public class Sales extends javax.swing.JInternalFrame {
 
             }
         ));
+        TablaVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaVentaMousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(TablaVenta);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Dollar.png"))); // NOI18N
@@ -305,7 +315,6 @@ public class Sales extends javax.swing.JInternalFrame {
                     .addComponent(BtnSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
@@ -347,27 +356,11 @@ public class Sales extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int i = TablaBusqueda.getSelectedRow();
-        if (i == -1)
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione al menos un producto para su venta");
-        }else
-        {
-            if ("S-E".equals((String) TablaBusqueda.getValueAt(i, 5)) || Integer.parseInt((String) TablaBusqueda.getValueAt(i, 5)) <= 0)
-            {
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Ya no hay mas producto que vender.");
-            }else
-            {
-            RemoveStore(i);    
-            AddSale(i);
-            updatetotal();
-            }
-        }
+        BtnAddProductSale();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        RemoverProductoEnVenta();
-        updatetotal();
+        BtnRemoveProductoSale();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -466,6 +459,20 @@ public class Sales extends javax.swing.JInternalFrame {
         JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"No ha seleccionado ningun producto");
     }
     }//GEN-LAST:event_BtnVerActionPerformed
+
+    private void TablaBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaBusquedaMousePressed
+        if (evt.getClickCount() == 2) 
+        {
+            BtnAddProductSale();
+        }
+    }//GEN-LAST:event_TablaBusquedaMousePressed
+
+    private void TablaVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaVentaMousePressed
+        if (evt.getClickCount() == 2)
+        {
+            BtnRemoveProductoSale();
+        }
+    }//GEN-LAST:event_TablaVentaMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1164,5 +1171,29 @@ private String NombreMes ()
             } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
             }        
+    }
+
+    private void BtnAddProductSale() {
+        int i = TablaBusqueda.getSelectedRow();
+        if (i == -1)
+        {
+        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione al menos un producto para su venta");
+        }else
+        {
+            if ("S-E".equals((String) TablaBusqueda.getValueAt(i, 5)) || Integer.parseInt((String) TablaBusqueda.getValueAt(i, 5)) <= 0)
+            {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Ya no hay mas producto que vender.");
+            }else
+            {
+            RemoveStore(i);    
+            AddSale(i);
+            updatetotal();
+            }
+        }
+    }
+
+    private void BtnRemoveProductoSale() {
+        RemoverProductoEnVenta();
+        updatetotal();
     }
 }

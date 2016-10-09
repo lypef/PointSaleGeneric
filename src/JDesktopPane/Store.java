@@ -75,6 +75,11 @@ public class Store extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaMousePressed(evt);
+            }
+        });
         Tabla.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TablaKeyPressed(evt);
@@ -225,12 +230,16 @@ public class Store extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
-     if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
+        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
-        }else
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+        }
+        else
         {
-        Print();            
+            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
+            {
+               Print();
+            }
         }
 
     }//GEN-LAST:event_ImprimirActionPerformed
@@ -240,22 +249,7 @@ public class Store extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
-        }else
-        {
-        int x = Tabla.getSelectedRow();
-        if (x == -1)
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione articulo a editar");
-        }else
-        {
-        CallEditar (x);
-        }
-        }
-        
+        BtnFunctionEditProduct();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
@@ -308,13 +302,20 @@ public class Store extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
         }else
         {
-        CallDelete();            
+            CallDelete();            
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void TablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMousePressed
+        if (evt.getClickCount() == 2)
+        {
+            BtnFunctionEditProduct();
+        }
+    }//GEN-LAST:event_TablaMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -362,13 +363,13 @@ public class Store extends javax.swing.JInternalFrame {
             String valores [] = new String [6];
             
             while (rs.next()){
-            valores [0] = rs.getString(1);
-            valores [1] = rs.getString(2);
-            valores [2] = rs.getString(3); 
-            valores [3] = rs.getString(4);
-            valores [4] = rs.getString(5);
-            valores [5] = rs.getString(6);            
-            DefaultTableModel.addRow(valores);
+                valores [0] = rs.getString(1);
+                valores [1] = rs.getString(2);
+                valores [2] = rs.getString(3); 
+                valores [3] = rs.getString(4);
+                valores [4] = rs.getString(5);
+                valores [5] = rs.getString(6);            
+                DefaultTableModel.addRow(valores);
             }
             
         } catch (ClassNotFoundException ex) {
@@ -460,6 +461,23 @@ public class Store extends javax.swing.JInternalFrame {
         }
         
     }
+    }
+
+    private void BtnFunctionEditProduct() {
+        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
+        {
+        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+        }else
+        {
+        int x = Tabla.getSelectedRow();
+        if (x == -1)
+        {
+        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione articulo a editar");
+        }else
+        {
+        CallEditar (x);
+        }
+        }
     }
   
 }
