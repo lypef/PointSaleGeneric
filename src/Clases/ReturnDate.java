@@ -38,8 +38,8 @@ public class ReturnDate {
             }
             
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(addproduct.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"UPS, Parece que no se ah encontrado una conexion con la base de datos.");
+            System.exit(0);
         }
         return var.toUpperCase();
     }  

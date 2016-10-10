@@ -4,14 +4,11 @@
  */
 package JDesktopPane;
 
-import Clases.JForm.*;
 import Clases.ConexionBD;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -234,15 +231,11 @@ public class Login extends javax.swing.JFrame {
                       }else {
              JOptionPane.showMessageDialog(null, "Verifique sus datos nuevamente.");
              }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"ERROR DE CONEXION CON BASE DE DATOS");
             //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
          
