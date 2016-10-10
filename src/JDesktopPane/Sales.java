@@ -51,7 +51,7 @@ public class Sales extends javax.swing.JInternalFrame {
         DateSearchTable ();
         DateSearchTableVenta ();
         Fecha.setText(dia +" de  " +NombreMes() +" de "+ año);
-        
+        TxtBarCode.requestFocus();
     }
 
     /**
@@ -113,7 +113,7 @@ public class Sales extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Vendedor :");
 
-        TablaBusqueda.setFont(TablaBusqueda.getFont().deriveFont(TablaBusqueda.getFont().getSize()+2f));
+        TablaBusqueda.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
         TablaBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -139,7 +139,7 @@ public class Sales extends javax.swing.JInternalFrame {
             }
         });
 
-        TablaVenta.setFont(TablaVenta.getFont().deriveFont(TablaVenta.getFont().getSize()+2f));
+        TablaVenta.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
         TablaVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -183,7 +183,6 @@ public class Sales extends javax.swing.JInternalFrame {
 
         TxtBarCode.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         TxtBarCode.setForeground(new java.awt.Color(204, 204, 204));
-        TxtBarCode.setText("// CODIGO");
         TxtBarCode.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TxtBarCodeMouseClicked(evt);

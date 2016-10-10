@@ -11,6 +11,7 @@ import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -33,8 +34,12 @@ public class Resumen extends javax.swing.JInternalFrame {
     
     public Resumen() {
         initComponents();
+        DateStart.hide();
         setTitle("RESUMEN -" + datos.ReturnDateMay("nombre"));
         Modelo();
+        Date hoy = new Date();
+        DateFinaly.setDate(hoy);
+        BtnSearchAction();
     }
 
     /**
@@ -46,7 +51,7 @@ public class Resumen extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        FechaBox = new com.toedter.calendar.JDateChooser();
+        DateFinaly = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
@@ -54,6 +59,8 @@ public class Resumen extends javax.swing.JInternalFrame {
         Imprimir = new javax.swing.JButton();
         BtnRecaudado = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        DateStart = new com.toedter.calendar.JDateChooser();
+        CBoxRangeDate = new javax.swing.JCheckBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -98,6 +105,13 @@ public class Resumen extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(34, 54, 232));
         jLabel1.setText("TOTAL RECAUDADO");
 
+        CBoxRangeDate.setText("Rango de fechas");
+        CBoxRangeDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CBoxRangeDateMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,8 +121,11 @@ public class Resumen extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(FechaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBoxRangeDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DateFinaly, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -125,10 +142,16 @@ public class Resumen extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(FechaBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(DateFinaly, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                            .addComponent(DateStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(CBoxRangeDate)
+                        .addGap(23, 23, 23)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -136,20 +159,14 @@ public class Resumen extends javax.swing.JInternalFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnRecaudado, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        clean();
-        Date fecha = FechaBox.getDate();
-        
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        ShowDate(formato.format(fecha));
-        
-        TotalRecaudado();
+        BtnSearchAction();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -166,6 +183,16 @@ public class Resumen extends javax.swing.JInternalFrame {
     private void BtnRecaudadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRecaudadoActionPerformed
         TotalRecaudado();
     }//GEN-LAST:event_BtnRecaudadoActionPerformed
+
+    private void CBoxRangeDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CBoxRangeDateMouseClicked
+        if (CBoxRangeDate.isSelected() == true)
+        {
+            DateStart.setVisible(true);
+        }else
+        {
+            DateStart.setVisible(false);
+        }
+    }//GEN-LAST:event_CBoxRangeDateMouseClicked
 
     private void ShowDate(String fecha)
     {
@@ -207,9 +234,44 @@ public class Resumen extends javax.swing.JInternalFrame {
             Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    private void ShowDateRange(Date FechaInicio, Date FechaFinaly) throws ParseException
+    {
+        
+        try {
+            DefaultTableModel tabla = (DefaultTableModel) Tabla.getModel();
+            
+            String valores[] = new String[7];
+            
+            Clases.ConexionBD coneccion = new Clases.ConexionBD();
+            
+            String sql = "select * from logs";
+            ResultSet rs = coneccion.Consulta(sql);
+            
+            while(rs.next())
+            {
+                if (rs.getDate(7).before(FechaFinaly) && rs.getDate(7).after(FechaInicio) || rs.getDate(7).equals(FechaInicio) || rs.getDate(7).equals(FechaFinaly))
+                {
+                    valores[0] = rs.getString(1);
+                    valores[1] = rs.getString(2);
+                    valores[2] = rs.getString(3);
+                    valores[3] = rs.getString(4);
+                    valores[4] = rs.getString(5);
+                    valores[5] = rs.getString(6);
+                    valores[6] = rs.getString(7);
+                    
+                    tabla.addRow(valores);
+                }
+            }
+            
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnRecaudado;
-    private com.toedter.calendar.JDateChooser FechaBox;
+    private javax.swing.JCheckBox CBoxRangeDate;
+    private com.toedter.calendar.JDateChooser DateFinaly;
+    private com.toedter.calendar.JDateChooser DateStart;
     private javax.swing.JButton Imprimir;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton jButton1;
@@ -263,6 +325,35 @@ public class Resumen extends javax.swing.JInternalFrame {
         {
            Double tmp = Double.parseDouble((String) Tabla.getValueAt(i, 3)) * Double.parseDouble((String) Tabla.getValueAt(i, 4)); 
            BtnRecaudado.setText(String.valueOf(Double.parseDouble(BtnRecaudado.getText()) + tmp));
+        }
+    }
+
+    private void BtnSearchAction() {
+        if (CBoxRangeDate.isSelected() == false)
+        {
+            clean();
+            Date fecha = DateFinaly.getDate();
+
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            ShowDate(formato.format(fecha));
+
+            TotalRecaudado();
+        }else
+        {
+            try {
+                clean();
+                Date FechaStart = DateStart.getDate();
+                Date FechaFinaly = DateFinaly.getDate();
+                
+                System.out.print(FechaStart);
+                System.out.print(FechaFinaly);
+                
+                ShowDateRange(FechaStart, FechaFinaly);
+                
+                TotalRecaudado();
+            } catch (ParseException ex) {
+                Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

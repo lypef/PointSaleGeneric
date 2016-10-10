@@ -167,7 +167,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel6.setText("Abarrotes:");
+        jLabel6.setText("Productos:");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Remove.png"))); // NOI18N
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -224,16 +224,17 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(107, 107, 107)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGap(25, 25, 25)
-                                            .addComponent(jLabel9))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(124, 124, 124)
-                                    .addComponent(jLabel5)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGap(132, 132, 132)
+                                            .addComponent(jLabel9))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(124, 124, 124)
+                                            .addComponent(jLabel5)))
+                                    .addGap(19, 19, 19))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(18, 18, 18)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(TxtTotal)
                                 .addGroup(layout.createSequentialGroup()
@@ -254,9 +255,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel6)
-                        .addGap(6, 6, 6)
+                        .addGap(32, 32, 32)
                         .addComponent(jLabel9)
                         .addGap(3, 3, 3)
                         .addComponent(jLabel5))
@@ -264,7 +263,9 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(TxtConsumo)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(TxtConsumo)
+                                    .addComponent(jLabel6))
                                 .addGap(6, 6, 6)
                                 .addComponent(TxtExtras))
                             .addGroup(layout.createSequentialGroup()

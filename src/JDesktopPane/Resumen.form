@@ -28,8 +28,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="1" pref="928" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="FechaBox" min="-2" pref="306" max="-2" attributes="0"/>
+                      <Component id="DateStart" min="-2" pref="306" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="CBoxRangeDate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="DateFinaly" min="-2" pref="306" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="127" max="-2" attributes="0"/>
                   </Group>
@@ -51,11 +54,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="FechaBox" max="32767" attributes="0"/>
-                  <Component id="jButton1" pref="57" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="DateFinaly" max="32767" attributes="0"/>
+                          <Component id="jButton1" pref="57" max="32767" attributes="0"/>
+                          <Component id="DateStart" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="CBoxRangeDate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="380" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -64,13 +76,13 @@
                   <Component id="BtnRecaudado" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.toedter.calendar.JDateChooser" name="FechaBox">
+    <Component class="com.toedter.calendar.JDateChooser" name="DateFinaly">
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
@@ -150,6 +162,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="TOTAL RECAUDADO"/>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="DateStart">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="CBoxRangeDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rango de fechas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CBoxRangeDateMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
