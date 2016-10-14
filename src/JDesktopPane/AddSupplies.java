@@ -305,7 +305,7 @@ public class AddSupplies extends javax.swing.JInternalFrame {
             }
             
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
     }

@@ -503,22 +503,7 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
     int y = (Desktop.Escritorio.getHeight() / 2) - ventana / 2;
     return y;
     }
-    private void CallStaff ()
-    {
-    if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Acceso denegado");
-        }else
-        {
-        Staff Staff = new Staff();
-        Staff.NivelDeUsuario = NivelDeUsuario;
-        Staff.UsuarioDeTrabajador = UsuarioDeTrabajador;
-        Escritorio.add(Staff);
-        Staff.toFront();
-        Staff.setLocation(DesktopEscritorioX(Staff.getWidth()),DesktopEscritorioy(Staff.getHeight()));
-        Staff.show();
-        }
-    }
+    
     private void CallClientes ()
     {
         if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
@@ -618,7 +603,6 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
 
     private void CallConsultas() 
     {
-    
         if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
         {
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
@@ -674,12 +658,15 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
     }
 
     private void AdminStaff() {
-        if (NivelDeUsuario.equalsIgnoreCase("root"))
-        {
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Modulo no desarrollado");
-        }else
+        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
         {
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+        }else
+        {
+            Staff Reports = new Staff(NivelDeUsuario, UsuarioDeTrabajador);
+            Desktop.Escritorio.add(Reports);
+            Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
+            Reports.show();
         }
     }
 }

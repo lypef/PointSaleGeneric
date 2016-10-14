@@ -182,7 +182,7 @@ public class Login extends javax.swing.JFrame {
         String Usuarios = IngresoUser.getText();
         String Password = IngresoPassword.getText();
         if (Usuarios.equals("") && Password.equals("")){
-        JOptionPane.showMessageDialog(null, "No ha ingresado Usuario o Contraseña");
+            JOptionPane.showMessageDialog(null, "No ha ingresado Usuario o Contraseña");
         }else {
         String Usuarios0 = "";
         String Password0 = "";
@@ -196,46 +196,33 @@ public class Login extends javax.swing.JFrame {
             ResultSet Ingresa = CBD.Consulta(sql);
             
             while (Ingresa.next()){
-                    Usuarios0 = Ingresa.getString(2);
-                    Password0 = Ingresa.getString(3);
-                    Nombre = Ingresa.getString(4);
-                    Nivel = Ingresa.getString(12);
+                    Usuarios0 = Ingresa.getString(1);
+                    Password0 = Ingresa.getString(2);
+                    Nombre = Ingresa.getString(3);
+                    Nivel = Ingresa.getString(9);
                     
                 }
            
-             if(Usuarios0.equalsIgnoreCase(Usuarios)){
-                    if(Password.equals(Password0)){
-                        if (Nivel.equalsIgnoreCase("Vendedor")){
+             if(Usuarios0.equalsIgnoreCase(Usuarios))
+             {
+                    if(Password.equals(Password0))
+                    {
                         Desktop.InsertaNombre(Nivel, Nombre);
+                        Desktop.UsuarioDeTrabajador = Usuarios0;
                         dispose();
                         Desktop.setVisible(true);
-                     }else {
-                        if (Nivel.equalsIgnoreCase("Administrador")){
-                        Desktop.InsertaNombre(Nivel, Nombre);
-                        dispose();
-                        Desktop.setVisible(true);
-                     }else {
-                        if (Nivel.equalsIgnoreCase("Root")){
-                        Desktop.InsertaNombre(Nivel, Nombre);
-                        dispose();
-                        Desktop.setVisible(true);
-                     }else {
-                        JOptionPane.showMessageDialog(null,"Usted no tiene nivel establecido \ncontacte a un  admimnistrador "+ Nombre);
-                        dispose();
+                     }else 
+                     {
+                        JOptionPane.showMessageDialog(null, "Verifique sus datos nuevamente.");
                      }
-                     }
-                     }
-                     }else {
-             JOptionPane.showMessageDialog(null, "Verifique sus datos nuevamente.");
-             }
-                      }else {
-             JOptionPane.showMessageDialog(null, "Verifique sus datos nuevamente.");
+             }else 
+             {
+                JOptionPane.showMessageDialog(null, "Verifique sus datos nuevamente.");
              }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"ERROR DE CONEXION CON BASE DE DATOS");
-            //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,ex.toString());
         }
         }
          

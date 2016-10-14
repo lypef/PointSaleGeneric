@@ -31,7 +31,9 @@ public class Staff extends javax.swing.JInternalFrame {
     String UsuarioDeTrabajador;
     Boolean Veradmin = false,vervendedores = false,verroot = false,vermatutino = false,vervespertino = false;
     
-    public Staff () {
+    public Staff (String level, String Staff) {
+        NivelDeUsuario = level;
+        UsuarioDeTrabajador = Staff;
         initComponents();
         setTitle("Personal");
         ModeloTabla ();
@@ -55,15 +57,6 @@ public class Staff extends javax.swing.JInternalFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
@@ -83,6 +76,11 @@ public class Staff extends javax.swing.JInternalFrame {
 
             }
         ));
+        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabla);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Exit-Exit.png"))); // NOI18N
@@ -144,67 +142,6 @@ public class Staff extends javax.swing.JInternalFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-
-        jMenu1.setText("Ver");
-
-        jMenu3.setText("Nivel");
-
-        jMenuItem1.setText("Vendedores");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem1);
-
-        jMenuItem2.setText("Administradores");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem2);
-
-        jMenuItem3.setText("Root's");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem3);
-
-        jMenu1.add(jMenu3);
-
-        jMenu4.setText("Turno");
-
-        jMenuItem4.setText("Matutino");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem4);
-
-        jMenuItem5.setText("Vespertino");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem5);
-
-        jMenu1.add(jMenu4);
-
-        jMenuItem6.setText("Todos");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu1);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,7 +171,7 @@ public class Staff extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -261,193 +198,63 @@ public class Staff extends javax.swing.JInternalFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         int x = Tabla.getSelectedRow();
         
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
+        if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Esta seguro de eliminar el usuario "+Tabla.getValueAt(x, 0)+" ?","¿QUESTION?", 0) == 0)
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
-        }else
-        {
-            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Esta seguro que desa eliminar el usuario " + (String) Tabla.getValueAt(x, 1),"¿Desea eliminar?",0) == 0)
-            {
-                    
             if (NivelDeUsuario.equalsIgnoreCase("root"))
             {
-                if ("administrador".equalsIgnoreCase((String) Tabla.getValueAt(x, 9)) || "vendedor".equalsIgnoreCase((String) Tabla.getValueAt(x, 9)))
+                if (!UsuarioDeTrabajador.equalsIgnoreCase((String) Tabla.getValueAt(x, 0)))
                 {
-                    DeleteStaff(Integer.parseInt((String) Tabla.getValueAt(x, 0)));
+                    DeleteStaff((String) Tabla.getValueAt(x, 0));
+                    ModeloTabla();
                 }else
                 {
-                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
+                    JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"No puede eliminarse usted mismo.");
                 }
-            }
-        
-            if (NivelDeUsuario.equalsIgnoreCase("administrador"))
+            }else
             {
-                if ("vendedor".equalsIgnoreCase((String) Tabla.getValueAt(x, 9)))
-                {
-                    DeleteStaff(Integer.parseInt((String) Tabla.getValueAt(x,0)));
-                }else
-                {
                 JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
-                }
-            }
             }
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor") || NivelDeUsuario.equalsIgnoreCase("administrador"))
+        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
         }else
         {
-        AddStaff AddStaff = new AddStaff ();
-        Desktop.Escritorio.add(AddStaff);
-        AddStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - AddStaff.getWidth() / 2, Desktop.Escritorio.getHeight() /2 - AddStaff.getHeight() / 2);
-        AddStaff.toFront();
-        AddStaff.show();
+            AddUserSystem AddUserSystem = new AddUserSystem (NivelDeUsuario);
+            Desktop.Escritorio.add(AddUserSystem);
+            AddUserSystem.setLocation(Desktop.Escritorio.getWidth() / 2 - AddUserSystem.getWidth() / 2, Desktop.Escritorio.getHeight() /2 - AddUserSystem.getHeight() / 2);
+            AddUserSystem.toFront();
+            AddUserSystem.show();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if (Veradmin == false && vermatutino == false && verroot == false && vervendedores == false && vervespertino == false)
-        {
         ModeloTabla();
-        }
-        if (vervendedores == true)
-        {
-        VerVendedores();
-        }
-        if (Veradmin == true)
-        {
-        VerAdministradores();
-        }
-        if (verroot == true)
-        {
-        VerRoots();
-        }
-        if (vermatutino == true)
-        {
-        VerMatutino();
-        }
-        if (vervespertino == true)
-        {
-        VerVespertino();
-        }
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Accesso denegado");
-        }
-        if (NivelDeUsuario.equalsIgnoreCase("administrador"))
-        {
-        VerVendedores();
-        }
-        if (NivelDeUsuario.equalsIgnoreCase("root"))
-        {
-        VerVendedores();
-        }
-        vervendedores = true;
-        Veradmin = false;
-        verroot = false;
-        vermatutino = false;
-        vervespertino = false;
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Accesso denegado");
-        
-        }
-        if (NivelDeUsuario.equalsIgnoreCase("administrador"))
-        {
-        VerAdministradores();
-        }
-        if (NivelDeUsuario.equalsIgnoreCase("root"))
-        {
-        VerAdministradores();
-        }
-        
-        vervendedores = false;
-        Veradmin = true;
-        verroot = false;
-        vermatutino = false;
-        vervespertino = false;
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Accesso denegado");
-        }
-        if (NivelDeUsuario.equalsIgnoreCase("administrador"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Accesso denegado");
-        }
-        if (NivelDeUsuario.equalsIgnoreCase("root"))
-        {
-        VerRoots();
-        }
-        
-        vervendedores = false;
-        Veradmin = false;
-        verroot = true;
-        vermatutino = false;
-        vervespertino = false;
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
-        }else
-        {
-        VerVespertino();
-        }
-        vervendedores = false;
-        Veradmin = false;
-        verroot = false;
-        vermatutino = false;
-        vervespertino = true;
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-     if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-     {
-     JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Acceso denegado");
-     }else 
-     {
-     VerMatutino();
-     }
-        vervendedores = false;
-        Veradmin = false;
-        verroot = false;
-        vermatutino = true;
-        vervespertino = false;
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        ModeloTabla();
-        vervendedores = false;
-        Veradmin = false;
-        verroot = false;
-        vermatutino = false;
-        vervespertino = false;
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         try {
-            MessageFormat Header = new MessageFormat("LISTADO DE PERSONAL");
-            Tabla.print(JTable.PrintMode.NORMAL, Header, null, false, null, true);
-        } catch (PrinterException ex) {
-            Logger.getLogger(Staff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (HeadlessException ex) {
+            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
+            {
+               MessageFormat Header = new MessageFormat("LISTADO DE PERSONAL");
+               Tabla.print(JTable.PrintMode.NORMAL, Header, null, false, null, true);
+               JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Hecho");
+            }
+            
+        } catch (PrinterException | HeadlessException ex) {
             Logger.getLogger(Staff.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Hecho");
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void TablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMousePressed
+        if (evt.getClickCount() >= 2)
+        {
+            Editar();
+        }
+    }//GEN-LAST:event_TablaMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -458,16 +265,7 @@ public class Staff extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 private void ModeloTabla (){
@@ -475,114 +273,59 @@ private void ModeloTabla (){
             DefaultTableModel modelo = new DefaultTableModel(){
             public boolean isCellEditable(int rowIndex,int columnIndex){return false;} 
             };
-            String inserta [] = {"Id","Usuario","Nombre","A - paterno","A - materno","Direccion","Telefono","Turno","Email","Nivel"};
+            String inserta [] = {"USUARIO","NOMBRE","APELLIDOS","DIRECCION", "LEVEL"};
             modelo.setColumnIdentifiers(inserta);
             Tabla.setModel(modelo);
             Tabla.getTableHeader().setReorderingAllowed(false);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(150);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(300);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(400);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(300);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(200);
+            
             Clases.ConexionBD coneccion = new Clases.ConexionBD ();
-            String sql = "select * from usuarios";
+            
+            String sql = "";
+            if (NivelDeUsuario.equalsIgnoreCase("administrador"))
+            {
+                sql = "SELECT * FROM `usuarios` WHERE Nivel = 'vendedor' or Usuario = '"+ UsuarioDeTrabajador +"' ";
+            }
+            else if(NivelDeUsuario.equalsIgnoreCase("root"))
+            {
+                sql = "SELECT * FROM `usuarios` WHERE Nivel = 'vendedor' or Usuario = '"+ UsuarioDeTrabajador +"' or Nivel = 'administrador'";
+            }
+            
             ResultSet rs = coneccion.Consulta(sql);
-            String dato [] = new String [10];
+            String dato [] = new String [5];
             while (rs.next()){
             dato [0] = rs.getString(1);
-            dato [1] = rs.getString(2); 
-            dato [2] = rs.getString(4);
-            dato [3] = rs.getString(5);
-            dato [4] = rs.getString(6);
-            dato [5] = rs.getString(7);
-            dato [6] = rs.getString(8);
-            dato [7] = rs.getString(9);
-            dato [8] = rs.getString(10);
-            dato [9] = rs.getString(11);
+            dato [1] = rs.getString(3); 
+            dato [2] = rs.getString(4) + " " +rs.getString(5);
+            dato [3] = rs.getString(6);
+            dato [4] = rs.getString(9);
+            
             modelo.addRow(dato);
             }
             
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Staff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Staff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Staff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Staff.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
  private void Editar ()
     {
-        EditStaff EditStaff = new EditStaff ();
         int  Seleccion = Tabla.getSelectedRow();
         
         if (Seleccion == -1)
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Seleccione el usuario a editar");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Seleccione el usuario a editar");
         }else
         {
-        
-        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
-        {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Acceso denegado");
-        }
-        
-        if (NivelDeUsuario.equalsIgnoreCase("administrador"))
-        {
-            if (NivelDeUsuario.equalsIgnoreCase((String) Tabla.getValueAt(Seleccion,9)) && UsuarioDeTrabajador.equalsIgnoreCase((String) Tabla.getValueAt(Seleccion, 1)))
-            {
-                EditStaff.AccesoAdministrador();
-                Desktop.Escritorio.add(EditStaff);
-                EditStaff.LlenadoDeDatosAdmin((String) Tabla.getValueAt(Seleccion,1));
-                EditStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStaff.getWidth() /2, Desktop.Escritorio.getHeight() / 2 - EditStaff.getHeight() / 2);
-                EditStaff.show();
-            }else
-            {
-            if ("vendedor".equalsIgnoreCase((String) Tabla.getValueAt(Seleccion, 9)))
-            {
-                EditStaff.AccesoAdministrador();
-                Desktop.Escritorio.add(EditStaff);
-                EditStaff.LlenadoDeDatosAdmin((String) Tabla.getValueAt(Seleccion,1));
-                EditStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStaff.getWidth() /2, Desktop.Escritorio.getHeight() / 2 - EditStaff.getHeight() / 2);
-                EditStaff.show();            
-            }else
-            {
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
-            }
-            }
-            }
-        
-        if (NivelDeUsuario.equalsIgnoreCase("root"))
-        {
-            if (NivelDeUsuario.equalsIgnoreCase((String) Tabla.getValueAt(Seleccion, 9)) && UsuarioDeTrabajador.equalsIgnoreCase((String) Tabla.getValueAt(Seleccion,1) ))
-            {
-                  Desktop.Escritorio.add(EditStaff);
-                  EditStaff.LlenadoDeDatosRoot((String) Tabla.getValueAt(Seleccion, 1));
-                  EditStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStaff.getWidth() /2, Desktop.Escritorio.getHeight() / 2 - EditStaff.getHeight() / 2);
-                  EditStaff.show();
-            }else
-            {
-                if ("administrador".equalsIgnoreCase((String) Tabla.getValueAt(Seleccion,9)))
-                {
-                  Desktop.Escritorio.add(EditStaff);
-                  EditStaff.LlenadoDeDatosRoot((String) Tabla.getValueAt(Seleccion, 1));
-                  EditStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStaff.getWidth() /2, Desktop.Escritorio.getHeight() / 2 - EditStaff.getHeight() / 2);                  
-                  EditStaff.show();                
-                }else
-                {
-                    if ("vendedor".equalsIgnoreCase((String) Tabla.getValueAt(Seleccion ,9)))
-                            {
-                              Desktop.Escritorio.add(EditStaff);
-                              EditStaff.LlenadoDeDatosRoot((String) Tabla.getValueAt(Seleccion, 1));
-                              EditStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStaff.getWidth() /2, Desktop.Escritorio.getHeight() / 2 - EditStaff.getHeight() / 2);
-                              EditStaff.show();                                            
-                            }else
-                            {
-                                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
-                            }
-                }
-            }
-
-        }
-        
+            EditUserSystem EditStaff = new EditUserSystem(NivelDeUsuario, Tabla.getValueAt(Seleccion, 0).toString());
+            Desktop.Escritorio.add(EditStaff);
+            EditStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStaff.getWidth() /2, Desktop.Escritorio.getHeight() / 2 - EditStaff.getHeight() / 2);
+            EditStaff.show();            
         }
         
         
@@ -792,16 +535,16 @@ private void ModeloTabla (){
         }
     
     }
-    private void DeleteStaff (int x)
+    private void DeleteStaff (String x)
     {
         try {
             ConexionBD coneccion = new ConexionBD ();
-            String sql = "DELETE  FROM vendedor WHERE idvendedor = '"+x+"';";
+            String sql = "DELETE  FROM usuarios WHERE usuario = '"+x+"';";
             coneccion.ejecutar(sql);
             DefaultTableModel table =  (DefaultTableModel) Tabla.getModel();
             table.fireTableChanged(null);
             ModeloTabla();
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Trabajador eliminado correctamente.");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"El usuario ah sido eliminado correctamente.");
         
         } catch (SQLException ex) {
             Logger.getLogger(Staff.class.getName()).log(Level.SEVERE, null, ex);

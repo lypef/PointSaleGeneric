@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-08-2016 a las 06:07:38
+-- Tiempo de generación: 15-10-2016 a las 01:19:59
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.5.37
 
@@ -167,7 +167,16 @@ INSERT INTO `logs` (`id`, `producto`, `codigo`, `precio`, `piezas`, `hora`, `fec
 (74, 'FANTA LATA', '392888', 10, 1, '00:26:12', '2016-08-24'),
 (75, 'MINSA 250 GR', '989833', 13, 1, '00:27:12', '2016-08-24'),
 (76, 'P3', '7508765432345678', 78.4, 1, '00:33:59', '2016-08-24'),
-(77, 'IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII', '9999999999999999999999', 9999, 1, '00:33:59', '2016-08-24');
+(77, 'IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII', '9999999999999999999999', 9999, 1, '00:33:59', '2016-08-24'),
+(78, '444', '4444', 444444, 1, '03:31:00', '2016-10-09'),
+(79, 'TEHUACAN', '898976545', 9, 1, '03:31:01', '2016-10-09'),
+(80, 'COCACOLA 600 ML', '83838477', 13, 1, '03:31:01', '2016-10-09'),
+(81, 'TEHUACAN', '898976545', 9, 1, '00:03:03', '2016-10-10'),
+(82, 'COCACOLA 600 ML', '83838477', 13, 1, '00:03:03', '2016-10-10'),
+(83, 'PAPAS ADOBADAS', '83874', 10, 1, '00:12:12', '2016-10-10'),
+(84, 'PAPAS ADOBADAS', '83874', 10, 1, '00:12:13', '2016-10-10'),
+(85, 'PAPAS ADOBADAS', '38383888', 12, 1, '00:12:13', '2016-10-10'),
+(86, 'COCACOLA 600 ML', '83838477', 13, 1, '00:12:13', '2016-10-10');
 
 -- --------------------------------------------------------
 
@@ -192,8 +201,8 @@ CREATE TABLE `productos` (
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `codigo`, `precio`, `stock`, `vendidos`) VALUES
 (1, 'CACACOLA LATA', 'REFRESCO SABOR COCACOLA', '7628827', 15, 225, 81),
 (2, 'FANTA LATA', 'REFRESCO SABOR NARANJA ', '392888', 10, 38, 36),
-(3, 'PAPAS ADOBADAS', 'PAPAS ADOBADAS', '38383888', 12, 24, 8),
-(4, 'COCACOLA 600 ML', 'REFRESCO CON AZUCAR SABOR COLA 600 ML ', '83838477', 13, 17, 3),
+(3, 'PAPAS ADOBADAS', 'PAPAS ADOBADAS', '38383888', 12, 23, 9),
+(4, 'COCACOLA 600 ML', 'REFRESCO CON AZUCAR SABOR COLA 600 ML ', '83838477', 13, 14, 6),
 (5, 'AGUA CIEL 1LT', 'AGUA ENBOTELLADA 1LT', '8878788', 10, 0, 8),
 (6, 'ACEITE PATRONA', 'ACEITE COMESTIBLE PATRONA', '989897', 28, 0, 0),
 (7, 'ACEITE CAPULLO', 'ACEITE CAPUYO COMESTIBLE', '98989877', 33, 0, 0),
@@ -201,12 +210,12 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `codigo`, `precio`, `sto
 (9, 'MINSA 250 GR', 'MINSA, ARINA', '989833', 13, 0, 5),
 (10, 'MASECA 1KG', 'ARINA MASECA', '9893388', 23, 0, 1),
 (11, 'HALLS', 'CARAMELO MASISO', '898933888', 7, 14, 5),
-(12, 'TEHUACAN', 'TEHUACAN CANADA DRY', '898976545', 9, 31, 3),
+(12, 'TEHUACAN', 'TEHUACAN CANADA DRY', '898976545', 9, 29, 5),
 (13, 'BROCHETA DE TEMARINDO', 'PULPA DE TAMARINDO', '4567898', 3, 35, 0),
 (14, 'CLEARS', 'CARAMELO MASISO MARCA CLEARS', '45679544', 2, 32, 2),
 (15, 'ALKA SELZER', 'POLVO PARA AGUA EFERVESENTE', '74392929', 16, 45, 0),
 (16, 'LAPICERO', 'LAPICERO COLOR AZUL', '848483', 4, 33, 1),
-(17, 'PAPAS ADOBADAS', 'PAPAS NATURALES ADOBADAS', '83874', 10, 1, 1),
+(17, 'PAPAS ADOBADAS', 'PAPAS NATURALES ADOBADAS', '83874', 10, -1, 3),
 (18, 'CHETOS TORCIDITOS', 'SABRITAS SABOR QUESO', '84848', 7, 23, 0),
 (19, 'JABON DE TOCADOR', 'JABON DE TOCADOR OLOR A ROSAS', '3930348', 8, 2, 1),
 (20, 'PRODUCTO 20', 'PRODUCTO NUMERO 20', '84848', 88, 20, 0),
@@ -221,7 +230,7 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `codigo`, `precio`, `sto
 (29, '8888888888888888', '88888888888888888888888', '88888888888', 8, 8, 0),
 (30, '88888888888888888888', '88888888888888888', '88888888888888888', 8, 7, 1),
 (31, '888888888888888888888', '888888888888888', '888888888888', 4444, 43, 0),
-(32, '444', '44444', '4444', 444444, 44444, 0),
+(32, '444', '44444', '4444', 444444, 44443, 1),
 (33, 'PRUEBA UNO', 'DESCRIPCION', '88787878787', 89.4, 43, 0),
 (34, 'PRUEBA UNO', 'DESCRIPCION', '88787878787', 89.4, 42, 0),
 (35, 'PROBANDO PRODUCTO NUMERO DOS', 'HJHHIOIH', '750000000000', 99.655, 87, 1),
@@ -263,26 +272,23 @@ INSERT INTO `provedores` (`idprovedor`, `empresa`, `direccion`, `email`, `telefo
 --
 
 CREATE TABLE `usuarios` (
-  `Id` int(11) NOT NULL,
   `Usuario` varchar(255) NOT NULL,
-  `Contraseña` varchar(255) NOT NULL,
-  `Nombre` varchar(255) NOT NULL,
-  `PrimerApellido` varchar(255) NOT NULL,
-  `SegundoApellido` varchar(255) NOT NULL,
-  `Direccion` varchar(255) NOT NULL,
-  `Colonia` varchar(255) NOT NULL,
-  `CodigoPostal` varchar(255) NOT NULL,
-  `Telefono` varchar(255) NOT NULL,
-  `CorreoElectronico` varchar(255) NOT NULL,
-  `Nivel` varchar(255) NOT NULL
+  `Contraseña` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `PrimerApellido` varchar(255) DEFAULT NULL,
+  `SegundoApellido` varchar(255) DEFAULT NULL,
+  `Direccion` varchar(255) DEFAULT NULL,
+  `Telefono` varchar(255) DEFAULT NULL,
+  `CorreoElectronico` varchar(255) DEFAULT NULL,
+  `Nivel` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`Id`, `Usuario`, `Contraseña`, `Nombre`, `PrimerApellido`, `SegundoApellido`, `Direccion`, `Colonia`, `CodigoPostal`, `Telefono`, `CorreoElectronico`, `Nivel`) VALUES
-(1, 'root', 'root', 'USUARIO ADMINISTRADOR', '.', '.', 'DIRECCION', 'centro', '96980', '9231200505', 'lypef@live.com', 'root');
+INSERT INTO `usuarios` (`Usuario`, `Contraseña`, `Nombre`, `PrimerApellido`, `SegundoApellido`, `Direccion`, `Telefono`, `CorreoElectronico`, `Nivel`) VALUES
+('root', 'root', 'root', '5', '5', '5', '5', '5', 'root');
 
 --
 -- Índices para tablas volcadas
@@ -310,7 +316,7 @@ ALTER TABLE `productos`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -320,17 +326,12 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
