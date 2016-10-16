@@ -460,14 +460,14 @@ public class Sales extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnVerActionPerformed
 
     private void TablaBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaBusquedaMousePressed
-        if (evt.getClickCount() == 2) 
+        if (evt.getClickCount() >= 2) 
         {
             BtnAddProductSale();
         }
     }//GEN-LAST:event_TablaBusquedaMousePressed
 
     private void TablaVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaVentaMousePressed
-        if (evt.getClickCount() == 2)
+        if (evt.getClickCount() >= 2)
         {
             BtnRemoveProductoSale();
         }
