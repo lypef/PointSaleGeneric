@@ -49,6 +49,7 @@ public class Config extends javax.swing.JInternalFrame {
         Msg1.setText(datos.ReturnDateMay("msg1"));
         Msg2.setText(datos.ReturnDateMay("msg2"));
         Msg3.setText(datos.ReturnDateMay("msg3"));
+        Productsfew.setValue(Integer.parseInt(datos.ReturnDateMay("Productsfew")));
     }
 
     /**
@@ -75,6 +76,8 @@ public class Config extends javax.swing.JInternalFrame {
         TxtDireccion = new javax.swing.JTextField();
         TxtTelefono = new javax.swing.JTextField();
         TxtRfc = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        Productsfew = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         RBticketcajon = new javax.swing.JRadioButton();
         RBticket = new javax.swing.JRadioButton();
@@ -108,6 +111,11 @@ public class Config extends javax.swing.JInternalFrame {
 
         TxtRfc.setText("jTextField1");
 
+        jLabel9.setText("Productos escasos:");
+
+        Productsfew.setEditor(new javax.swing.JSpinner.NumberEditor(Productsfew, ""));
+        Productsfew.setValue(3);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,20 +123,27 @@ public class Config extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel2))
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtRfc)
-                    .addComponent(TxtName)
-                    .addComponent(TxtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                    .addComponent(TxtTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel1))
+                                    .addComponent(jLabel2))
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtRfc)
+                            .addComponent(TxtName)
+                            .addComponent(TxtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                            .addComponent(TxtTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Productsfew, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,7 +165,11 @@ public class Config extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtRfc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(Productsfew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("General", jPanel1);
@@ -304,7 +323,7 @@ public class Config extends javax.swing.JInternalFrame {
                 ticketcajon = 0;
             }
                     
-            String Sql = "update config set nombre = '"+TxtName.getText().toUpperCase()+"', rfc = '"+TxtRfc.getText().toUpperCase()+"', direccion = '"+TxtDireccion.getText().toUpperCase()+"', telefono = '"+TxtTelefono.getText().toUpperCase()+"', ticket =  '"+Ticket+"', cajon = '"+ cajon +"', ticketcajon = '"+ ticketcajon +"', nameprint = '"+ TxtImpresora.getText() +"', msg1 = '"+ Msg1.getText() +"', msg2 = '"+ Msg2.getText() +"', msg3 = '"+ Msg3.getText() +"'  where id = 1 ";
+            String Sql = "update config set nombre = '"+TxtName.getText().toUpperCase()+"', rfc = '"+TxtRfc.getText().toUpperCase()+"', direccion = '"+TxtDireccion.getText().toUpperCase()+"', telefono = '"+TxtTelefono.getText().toUpperCase()+"', ticket =  '"+Ticket+"', cajon = '"+ cajon +"', ticketcajon = '"+ ticketcajon +"', nameprint = '"+ TxtImpresora.getText() +"', msg1 = '"+ Msg1.getText() +"', msg2 = '"+ Msg2.getText() +"', msg3 = '"+ Msg3.getText() +"', Productsfew = '"+ Productsfew.getValue() +"'  where id = 1 ";
             
             ConexionBD BD = new ConexionBD ();
             BD.ejecutar(Sql);
@@ -321,6 +340,7 @@ public class Config extends javax.swing.JInternalFrame {
     private javax.swing.JTextField Msg1;
     private javax.swing.JTextField Msg2;
     private javax.swing.JTextField Msg3;
+    private javax.swing.JSpinner Productsfew;
     private javax.swing.JRadioButton RBcajon;
     private javax.swing.JRadioButton RBnoIMP;
     private javax.swing.JRadioButton RBticket;
@@ -344,6 +364,7 @@ public class Config extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane2;

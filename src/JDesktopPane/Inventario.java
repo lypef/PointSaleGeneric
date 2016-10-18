@@ -22,11 +22,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lypef
  */
+
 public class Inventario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Reports
      */
+    
     Clases.ReturnDate datos = new Clases.ReturnDate();
     
     public Inventario() {
@@ -52,7 +54,6 @@ public class Inventario extends javax.swing.JInternalFrame {
         jButton8 = new javax.swing.JButton();
         ButonSearch = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -121,12 +122,14 @@ public class Inventario extends javax.swing.JInternalFrame {
             }
         });
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
         jMenu2.setText("Mostrar");
 
-        jMenuItem1.setText("Minimo de productos");
+        jMenuItem1.setText("Productos escasos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
@@ -208,8 +211,7 @@ public class Inventario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TextModeloKeyPressed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        TextModelo.setText("// MODELO");
-        ChargeDate("select * from productos");
+        Clean();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void ButonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButonSearchActionPerformed
@@ -223,6 +225,11 @@ public class Inventario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ButonSearchActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Clean();
+        ChargeDate("select * from productos WHERE stock < '"+ datos.ReturnDateMay("Productsfew") +"' ");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButonSearch;
@@ -231,7 +238,6 @@ public class Inventario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TextModelo;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton8;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -282,6 +288,11 @@ public class Inventario extends javax.swing.JInternalFrame {
             Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Hecho");
+    }
+
+    private void Clean() {
+        TextModelo.setText("// Codigo Barra");
+        ChargeDate("select * from productos");
     }
 }
 

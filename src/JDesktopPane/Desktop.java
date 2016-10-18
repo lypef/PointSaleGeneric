@@ -295,6 +295,11 @@ public class Desktop extends javax.swing.JFrame {
         jMenu1.add(jMenuItem4);
 
         jMenuItem15.setText("Clientes");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem15);
 
         jMenuBar2.add(jMenu1);
@@ -465,6 +470,10 @@ public class Desktop extends javax.swing.JFrame {
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         AddEgreso();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        CallClients();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -817,5 +826,13 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
         {
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Ingrese un numero valido");
         }
+    }
+
+    private void CallClients() {
+        Clientes clientes = new Clientes();
+        Desktop.Escritorio.add(clientes);
+        clientes.NivelDeUsuario = NivelDeUsuario;
+        clientes.setLocation(Desktop.Escritorio.getWidth() / 2 - clientes.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - clientes.getHeight() / 2);
+        clientes.show();
     }
 }

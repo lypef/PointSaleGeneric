@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-10-2016 a las 01:19:59
+-- Tiempo de generación: 18-10-2016 a las 19:05:14
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.5.37
 
@@ -35,9 +35,16 @@ CREATE TABLE `clientes` (
   `ApellidoMaterno` varchar(254) NOT NULL,
   `rfc` varchar(254) NOT NULL,
   `telefono` varchar(254) NOT NULL,
-  `direccion` varchar(254) NOT NULL,
-  `numerodecompras` varchar(254) NOT NULL
+  `direccion` varchar(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `rfc`, `telefono`, `direccion`) VALUES
+(1, 'cliente 1', 'apellido 1', 'segudno apellido 2', 'rfc', 'tel', 'dire'),
+(3, 'NOMBRE', 'AAAAA', 'APE2', 'DWDWDWDWDWDWDWD', 'TEL', '412456485');
 
 -- --------------------------------------------------------
 
@@ -60,15 +67,16 @@ CREATE TABLE `config` (
   `nameprint` varchar(300) NOT NULL,
   `msg1` varchar(300) NOT NULL,
   `msg2` varchar(300) NOT NULL,
-  `msg3` varchar(300) NOT NULL
+  `msg3` varchar(300) NOT NULL,
+  `Productsfew` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `config`
 --
 
-INSERT INTO `config` (`id`, `nombre`, `rfc`, `direccion`, `telefono`, `desarrollador`, `version`, `web`, `ticket`, `cajon`, `ticketcajon`, `nameprint`, `msg1`, `msg2`, `msg3`) VALUES
-(1, 'SYSTEMA DEMO', 'ERWQ56568A', 'DIRECCION DEMO', 18009966, 'ISC. FRANCISCO EDUARDO ASCECNCIO DOMINGUEZ', '2.0', 'WWW.CYBERCHOAPAS.COM', 0, 0, 0, 'CUPS-PDF', ':D', '', '');
+INSERT INTO `config` (`id`, `nombre`, `rfc`, `direccion`, `telefono`, `desarrollador`, `version`, `web`, `ticket`, `cajon`, `ticketcajon`, `nameprint`, `msg1`, `msg2`, `msg3`, `Productsfew`) VALUES
+(1, 'SYSTEMA DEMO', 'ERWQ56568A', 'DIRECCION DEMO', 18009966, 'ISC. FRANCISCO EDUARDO ASCECNCIO DOMINGUEZ', '2.0', 'WWW.CYBERCHOAPAS.COM', 0, 0, 0, 'CUPS-PDF', ':D', '', '', 15);
 
 -- --------------------------------------------------------
 
@@ -176,7 +184,25 @@ INSERT INTO `logs` (`id`, `producto`, `codigo`, `precio`, `piezas`, `hora`, `fec
 (83, 'PAPAS ADOBADAS', '83874', 10, 1, '00:12:12', '2016-10-10'),
 (84, 'PAPAS ADOBADAS', '83874', 10, 1, '00:12:13', '2016-10-10'),
 (85, 'PAPAS ADOBADAS', '38383888', 12, 1, '00:12:13', '2016-10-10'),
-(86, 'COCACOLA 600 ML', '83838477', 13, 1, '00:12:13', '2016-10-10');
+(86, 'COCACOLA 600 ML', '83838477', 13, 1, '00:12:13', '2016-10-10'),
+(87, '8', '8', 8, 7, '02:25:03', '2016-10-16'),
+(88, 'TEHUACAN', '898976545', 9, 1, '02:52:10', '2016-10-16'),
+(89, 'HALLS', '898933888', 7, 1, '02:52:10', '2016-10-16'),
+(90, 'COCACOLA 600 ML', '83838477', 13, 1, '02:52:10', '2016-10-16'),
+(91, 'PAPAS ADOBADAS', '38383888', 12, 1, '02:52:10', '2016-10-16'),
+(92, 'CACACOLA LATA', '7628827', 15, 1, '02:52:10', '2016-10-16'),
+(93, 'INGRESO MANUAL', 's/n', 100, 1, '03:21:53', '2016-10-16'),
+(94, 'INGRESO MANUAL', 's/n', -100, 1, '03:23:42', '2016-10-16'),
+(95, 'INGRESO MANUAL', 's/n', 10, 1, '03:23:53', '2016-10-16'),
+(96, 'INGRESO MANUAL', 's/n', -22, 1, '03:24:13', '2016-10-16'),
+(97, 'INGRESO MANUAL', 's/n', 15, 1, '03:25:21', '2016-10-16'),
+(98, 'INGRESO MANUAL', 'se paga el gas', 15, 1, '03:28:29', '2016-10-16'),
+(99, 'INGRESO MANUAL', 'sssss', -15, 1, '03:28:44', '2016-10-16'),
+(100, 'GAS', 'S/N', 15, 1, '03:30:48', '2016-10-16'),
+(101, 'EGRESO GAS', 'S/N', -100, 1, '03:31:04', '2016-10-16'),
+(102, 'INGRESO - LO MIOS SON LAS FINANZAS', 'S/N', 100, 1, '03:32:56', '2016-10-16'),
+(103, 'EGRESO - LO MIO NO OL LAS FINANZAS', 'S/N', -150, 1, '03:33:38', '2016-10-16'),
+(104, 'INGRESO - NULL', 'S/N', 11, 1, '03:36:01', '2016-10-16');
 
 -- --------------------------------------------------------
 
@@ -199,18 +225,18 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `codigo`, `precio`, `stock`, `vendidos`) VALUES
-(1, 'CACACOLA LATA', 'REFRESCO SABOR COCACOLA', '7628827', 15, 225, 81),
+(1, 'CACACOLA LATA', 'REFRESCO SABOR COCACOLA', '7628827', 15, 224, 82),
 (2, 'FANTA LATA', 'REFRESCO SABOR NARANJA ', '392888', 10, 38, 36),
-(3, 'PAPAS ADOBADAS', 'PAPAS ADOBADAS', '38383888', 12, 23, 9),
-(4, 'COCACOLA 600 ML', 'REFRESCO CON AZUCAR SABOR COLA 600 ML ', '83838477', 13, 14, 6),
+(3, 'PAPAS ADOBADAS', 'PAPAS ADOBADAS', '38383888', 12, 22, 10),
+(4, 'COCACOLA 600 ML', 'REFRESCO CON AZUCAR SABOR COLA 600 ML ', '83838477', 13, 13, 7),
 (5, 'AGUA CIEL 1LT', 'AGUA ENBOTELLADA 1LT', '8878788', 10, 0, 8),
 (6, 'ACEITE PATRONA', 'ACEITE COMESTIBLE PATRONA', '989897', 28, 0, 0),
 (7, 'ACEITE CAPULLO', 'ACEITE CAPUYO COMESTIBLE', '98989877', 33, 0, 0),
 (8, 'NUTRIOLI', 'ACEITE NUTRIOLI', '98989989', 45, -4, 6),
 (9, 'MINSA 250 GR', 'MINSA, ARINA', '989833', 13, 0, 5),
 (10, 'MASECA 1KG', 'ARINA MASECA', '9893388', 23, 0, 1),
-(11, 'HALLS', 'CARAMELO MASISO', '898933888', 7, 14, 5),
-(12, 'TEHUACAN', 'TEHUACAN CANADA DRY', '898976545', 9, 29, 5),
+(11, 'HALLS', 'CARAMELO MASISO', '898933888', 7, 13, 6),
+(12, 'TEHUACAN', 'TEHUACAN CANADA DRY', '898976545', 9, 28, 6),
 (13, 'BROCHETA DE TEMARINDO', 'PULPA DE TAMARINDO', '4567898', 3, 35, 0),
 (14, 'CLEARS', 'CARAMELO MASISO MARCA CLEARS', '45679544', 2, 32, 2),
 (15, 'ALKA SELZER', 'POLVO PARA AGUA EFERVESENTE', '74392929', 16, 45, 0),
@@ -238,7 +264,7 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `codigo`, `precio`, `sto
 (37, 'P3', 'IID', '7508765432345678', 78.4, 5, 2),
 (39, 'NUEVO PRODUCTO', 'PRODUCTO NUEVO Y CARO', '750456789', 67.89, 3, 2),
 (41, 'PP', '8888', '89878', 8, 6, 1),
-(42, '8', '8', '8', 8, 7, 0);
+(42, '8', '8', '8', 8, 0, 7);
 
 -- --------------------------------------------------------
 
@@ -288,11 +314,18 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Usuario`, `Contraseña`, `Nombre`, `PrimerApellido`, `SegundoApellido`, `Direccion`, `Telefono`, `CorreoElectronico`, `Nivel`) VALUES
-('root', 'root', 'root', '5', '5', '5', '5', '5', 'root');
+('root', 'pepe', 'root', '5', '5', '5', '5', '5', 'ROOT'),
+('vende', 'vende', 'no tiene', ' no tiene', ' no tiene ', 'nel ', 'nel', ' nel ', 'administrador');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `config`
@@ -323,10 +356,15 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --

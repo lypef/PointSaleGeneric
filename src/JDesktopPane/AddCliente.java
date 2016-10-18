@@ -28,7 +28,6 @@ public class AddCliente extends javax.swing.JInternalFrame {
     public AddCliente() {
         initComponents();
         setTitle("Agregar personal");
-        id();
     }
 
     /**
@@ -40,8 +39,6 @@ public class AddCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        NumeroID1 = new javax.swing.JLabel();
-        NumeroID = new javax.swing.JLabel();
         Nombre = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -62,12 +59,6 @@ public class AddCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-
-        NumeroID1.setForeground(new java.awt.Color(255, 0, 0));
-        NumeroID1.setText("Nuevo ID :");
-
-        NumeroID.setForeground(new java.awt.Color(255, 0, 0));
-        NumeroID.setText("ID");
 
         jLabel11.setText("Ingrese datos del nuevo cliente");
 
@@ -120,93 +111,93 @@ public class AddCliente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(NumeroID1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NumeroID))
+                        .addGap(12, 12, 12)
+                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(PrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(SegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(RFC, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(BotonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(BotonDarDeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(Direccion)
-                                        .addComponent(Telefono)
-                                        .addComponent(SegundoApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                                        .addComponent(RFC, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(PrimerApellido))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addGap(55, 55, 55))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BotonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonDarDeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jLabel11)))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NumeroID)
-                            .addComponent(NumeroID1))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1)))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel6))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel12)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(RFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel3)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel5)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel9)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BotonLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonDarDeAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonLimpiar)
+                    .addComponent(BotonDarDeAlta)
+                    .addComponent(BotonCancelar)))
         );
 
         pack();
@@ -214,70 +205,31 @@ public class AddCliente extends javax.swing.JInternalFrame {
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
         Limpiar();
-        dispose();   
+        this.dispose();   
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void BotonDarDeAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDarDeAltaActionPerformed
-        Nombre.setText(Nombre.getText().toUpperCase());
-        PrimerApellido.setText(PrimerApellido.getText().toUpperCase());
-        SegundoApellido.setText(SegundoApellido.getText().toUpperCase());
-        Direccion.setText(Direccion.getText().toUpperCase());
-        RFC.setText(RFC.getText().toUpperCase());
         if (Nombre.getText().equals("") || PrimerApellido.getText().equals("") || SegundoApellido.getText().equals("") || 
-                Telefono.getText().equals("") || Direccion.getText().equals("") || RFC.getText().equalsIgnoreCase("")){
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Rellene todos los campos");
-        }else {
+                Telefono.getText().equals("") || Direccion.getText().equals("") || RFC.getText().equalsIgnoreCase(""))
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Ups, algo salio mal.");
+        }else
+        {
             try {
-                String busca = "";
-                ConexionBD BD;
-                String sql = "select * from cliente where nombre ='"+Nombre.getText()+"';";
-                try {
-                    BD = new ConexionBD ();
-                    ResultSet Ingresa = BD.Consulta(sql);
-                    while (Ingresa.next()){
-                        busca = Ingresa.getString(2);
-                    }
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                if (Nombre.getText().equalsIgnoreCase(busca)){
-                    JOptionPane.showMessageDialog(null,"Este usuario ya existe intente con otro");
-                }else{
-                String ID = "INSERT INTO `cliente`(`idcliente`,`nombre`, `apellidopaterno`, `apellidomaterno`, `rfc` , `telefono`,`direccion`,"
-                        + "`numerodecompras`) VALUES ('"+Integer.parseInt(NumeroID.getText())+"','"+Nombre.getText()+"','"+PrimerApellido.getText()+"',"
-                        + "'"+SegundoApellido.getText()+"','"+RFC.getText()+"','"+Telefono.getText()+"','"+Direccion.getText()+"',"
-                        + "'"+NumeroDeCompras()+"')";
-                 
-                        try {
-                            BD = new ConexionBD ();
-                            id();
-                            BD.ejecutar(ID);
-                            Limpiar ();
-                            dispose();
-                            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"El cliente "+ Nombre.getText() + " ha sido registrado CORRECTAMENTE ");
-                        } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Ho - ho ! Algo salio mal, intentelo de nuevo");
-                        } catch (SQLException ex) {
-                            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Ho - ho ! Algo salio mal, intentelo de nuevo");
-                        } catch (InstantiationException ex) {
-                            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Ho - ho ! Algo salio mal, intentelo de nuevo");
-                        } catch (IllegalAccessException ex) {
-                            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Ho - ho ! Algo salio mal, intentelo de nuevo");
-                        }
-                        }} catch (SQLException ex) {
-                    Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Ho - ho ! Algo salio mal, intentelo de nuevo");
-                }
+                String ID = "INSERT INTO `clientes`(`nombre`, `apellidopaterno`, `apellidomaterno`, `rfc` , `telefono`,`direccion`) VALUES ('"+Nombre.getText().toUpperCase()+"','"+PrimerApellido.getText().toUpperCase()+"',"
+                        + "'"+SegundoApellido.getText().toUpperCase()+"','"+RFC.getText().toUpperCase()+"','"+Telefono.getText().toUpperCase()+"','"+Direccion.getText().toUpperCase()+"')";
+                
+                ConexionBD BD = new ConexionBD ();
+                
+                BD.ejecutar(ID);
+                Limpiar ();
+                dispose();
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Hecho");
+                
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,ex);
             }
+        }
 
     }//GEN-LAST:event_BotonDarDeAltaActionPerformed
 
@@ -292,8 +244,6 @@ public class AddCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton BotonLimpiar;
     private javax.swing.JTextField Direccion;
     private javax.swing.JTextField Nombre;
-    private javax.swing.JLabel NumeroID;
-    private javax.swing.JLabel NumeroID1;
     private javax.swing.JTextField PrimerApellido;
     private javax.swing.JTextField RFC;
     private javax.swing.JTextField SegundoApellido;
@@ -315,39 +265,5 @@ private void Limpiar () {
     Direccion.setText("");
     RFC.setText("");
     }
-private void id (){
 
-        for (;id != compara ; ){
-        try {
-            Clases.ConexionBD  conexion = new Clases.ConexionBD ();
-            String sql = "select * from cliente where idcliente ='"+id+"';";
-            ResultSet Ingresa = conexion.Consulta(sql);
-   
-            while (Ingresa.next()){
-            compara = Ingresa.getInt(1);
-            }
-            if (id == compara){
-            id ++;
-            }else {
-            NumeroID.setText(String.valueOf(id));
-            break;
-            }
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(AddCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        }
-}
-private int NumeroDeCompras ()
-{
-return 2;
-}
 }

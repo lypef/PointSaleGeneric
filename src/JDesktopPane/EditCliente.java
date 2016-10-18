@@ -66,11 +66,6 @@ public class EditCliente extends javax.swing.JInternalFrame {
                 ClienteBuscarActionPerformed(evt);
             }
         });
-        ClienteBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ClienteBuscarKeyPressed(evt);
-            }
-        });
 
         IdCliente.setForeground(new java.awt.Color(255, 0, 0));
         IdCliente.setText("--");
@@ -101,7 +96,7 @@ public class EditCliente extends javax.swing.JInternalFrame {
         });
 
         BotonDarDeAlta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Save.png"))); // NOI18N
-        BotonDarDeAlta.setText("Editar");
+        BotonDarDeAlta.setText("Guardar");
         BotonDarDeAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonDarDeAltaActionPerformed(evt);
@@ -242,51 +237,8 @@ public class EditCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ClienteBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteBuscarActionPerformed
-        if (ClienteBuscar.getText().equalsIgnoreCase("")){
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Ingrese nombre de usuario que desea editar");
-        }else {
-            try {
-                IdCliente.setText("--");
-                String BuscoIdcliente = ClienteBuscar.getText();
-                Clases.ConexionBD CBD = new Clases.ConexionBD ();
-                String sql = "select * from cliente where idcliente ='"+BuscoIdcliente+"';";
-                ResultSet Ingresa = CBD.Consulta(sql);
-                
-                while (Ingresa.next())
-                {
-                IdCliente.setText(Ingresa.getString(1));
-                NombreCliente.setText(Ingresa.getString(2));
-                ApellidoPaterno.setText(Ingresa.getString(3));
-                ApellidoMaterno.setText(Ingresa.getString(4));
-                Rfc.setText(Ingresa.getString(5));
-                Telefono.setText(Ingresa.getString(6));
-                Direccion.setText(Ingresa.getString(7));
-                NumeroDeCompras.setText(Ingresa.getString(8));
-                }
-                
-                if (IdCliente.getText().equalsIgnoreCase("--"))
-                {
-                Limpiar();
-                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"El ID del cliente no existe");
-                dispose();
-                }
-                
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(EditCliente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(EditCliente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(EditCliente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(EditCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
+        SearchClientId( Integer.parseInt(ClienteBuscar.getText()) );
     }//GEN-LAST:event_ClienteBuscarActionPerformed
-
-    private void ClienteBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ClienteBuscarKeyPressed
-
-    }//GEN-LAST:event_ClienteBuscarKeyPressed
 
     private void BotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiarActionPerformed
         Limpiar ();
@@ -301,27 +253,21 @@ public class EditCliente extends javax.swing.JInternalFrame {
         try {            
                 Clases.ConexionBD CBD = new Clases.ConexionBD ();
                 
-                String modificar = "update cliente set nombre = '"+NombreCliente.getText()+"' , "+" apellidopaterno = '"+ApellidoPaterno.getText()+"' , "+" apellidomaterno = "
+                String modificar = "update clientes set nombre = '"+NombreCliente.getText()+"' , "+" apellidopaterno = '"+ApellidoPaterno.getText()+"' , "+" apellidomaterno = "
                         + "'"+ApellidoMaterno.getText()+"' , "+" rfc = '"+Rfc.getText()+"' , "+" telefono = '"+Telefono.getText()+"' , "+" direccion ="
-                        + " '"+Direccion.getText()+"'  where idcliente = '"+Integer.parseInt(IdCliente.getText())+"'";
+                        + " '"+Direccion.getText()+"'  where id = '"+Integer.parseInt(IdCliente.getText())+"'";
                 
                 CBD.ejecutar(modificar);
                 JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Correcto");
                 Limpiar ();
-                dispose ();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(EditStaff.class.getName()).log(Level.SEVERE, null, ex);
+                this.dispose ();
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Ups, algo salio mal.");
             }
     }//GEN-LAST:event_BotonDarDeAltaActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
-        dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void NombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreClienteActionPerformed
@@ -363,36 +309,40 @@ public class EditCliente extends javax.swing.JInternalFrame {
              ClienteBuscar.setText("");
              IdCliente.setText("--");
     }
-    public void LlenadoDatosAdministrador (String idcliente , String Nombrecliente , String Apellidopaterno , String Apellidomaterno , String rfc ,
-            String telefono , String direccion , String numeroDeCompras)
-    {
-     IdCliente.setText(idcliente);
-     ClienteBuscar.setText(idcliente);
-     NombreCliente.setText(Nombrecliente);
-     ApellidoPaterno.setText(Apellidopaterno);
-     ApellidoMaterno.setText(Apellidomaterno);
-     Rfc.setText(rfc);
-     Telefono.setText(telefono);
-     Direccion.setText(direccion);
-     NumeroDeCompras.setText(numeroDeCompras);
-     NombreCliente.enable(false);
-     ApellidoPaterno.enable(false);
-     ApellidoMaterno.enable(false);
-     Rfc.enable(false);
-     
-    }
-    
-    public void LlenadoDatosRoot (String idcliente , String Nombrecliente , String Apellidopaterno , String Apellidomaterno , String rfc ,
-            String telefono , String direccion , String numeroDeCompras)
-    {
-     IdCliente.setText(idcliente);
-     ClienteBuscar.setText(idcliente);
-     NombreCliente.setText(Nombrecliente);
-     ApellidoPaterno.setText(Apellidopaterno);
-     ApellidoMaterno.setText(Apellidomaterno);
-     Rfc.setText(rfc);
-     Telefono.setText(telefono);
-     Direccion.setText(direccion);
-     NumeroDeCompras.setText(numeroDeCompras);
+
+    public void SearchClientId(int id) {
+        if (ClienteBuscar.getText().replace(" ", "").equalsIgnoreCase(""))
+        {
+            ClienteBuscar.setText(String.valueOf(id));
+        }
+            try {
+                IdCliente.setText("--");
+                Clases.ConexionBD CBD = new Clases.ConexionBD ();
+                String sql = "select * from clientes where id ='"+id+"';";
+                ResultSet Ingresa = CBD.Consulta(sql);
+                
+                while (Ingresa.next())
+                {
+                    IdCliente.setText(Ingresa.getString(1));
+                    NombreCliente.setText(Ingresa.getString(2));
+                    ApellidoPaterno.setText(Ingresa.getString(3));
+                    ApellidoMaterno.setText(Ingresa.getString(4));
+                    Rfc.setText(Ingresa.getString(5));
+                    Telefono.setText(Ingresa.getString(6));
+                    Direccion.setText(Ingresa.getString(7));
+                    NumeroDeCompras.setText(Ingresa.getString(8));
+                }
+                
+                if (IdCliente.getText().equalsIgnoreCase("--"))
+                {
+                Limpiar();
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"El ID del cliente no existe");
+                dispose();
+                }
+                
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(EditCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
 }
