@@ -242,6 +242,7 @@ public class EditUserSystem extends javax.swing.JInternalFrame {
         {
             AddValuesUser();
             Clean();
+            this.dispose();
         }else
         {
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Las contraseñas no coinciden");
@@ -296,8 +297,8 @@ public class EditUserSystem extends javax.swing.JInternalFrame {
             if (ReturnDateUserSystem("Nivel").equalsIgnoreCase("administrador"))
             {
                 ComboBoxLevel.addItem("ADMINISTRADOR");
-                ComboBoxLevel.addItem("VENDEDOR");
                 ComboBoxLevel.addItem("ROOT");
+                ComboBoxLevel.addItem("VENDEDOR");
             }
             else if (ReturnDateUserSystem("Nivel").equalsIgnoreCase("vendedor"))
             {
@@ -318,12 +319,10 @@ public class EditUserSystem extends javax.swing.JInternalFrame {
             {
                 ComboBoxLevel.addItem("ADMINISTRADOR");
                 ComboBoxLevel.addItem("VENDEDOR");
-                ComboBoxLevel.addItem("ROOT");
             }
             else if (ReturnDateUserSystem("Nivel").equalsIgnoreCase("vendedor"))
             {
                 ComboBoxLevel.addItem("VENDEDOR");
-                ComboBoxLevel.addItem("ROOT");
                 ComboBoxLevel.addItem("ADMINISTRADOR");
             }
         }

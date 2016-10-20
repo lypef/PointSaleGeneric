@@ -22,10 +22,25 @@ public class EditStore extends javax.swing.JInternalFrame {
     /**
      * Creates new form EditStaff
      */
-    String SelecncioNivel , SeleccionTurno;
-    public EditStore() {
+    String Level , SeleccionTurno;
+    public EditStore(String Id ,String producto , String descripcion , String Codigobarra , String precio , String stock, String level) 
+    {
         initComponents();
         setTitle("Edicion de articulos");
+        IdStore.setText(Id);
+        Producto.setText(producto);
+        TxtDescripcion.setText(descripcion);
+        CodigoBarra.setText(Codigobarra);
+        TxtPrecio.setText(precio);
+        TxtStock.setText(stock);
+        
+        if (level.equalsIgnoreCase("administrador"))
+        {
+            TxtPrecio.enable(false);
+            TxtStock.enable(false);
+            CodigoBarra.enable(false);
+        }
+        Level = level;
    }
 
     /**
@@ -227,17 +242,6 @@ public class EditStore extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 // Funciones
-
-    
-    public void FuncionEditarRoot (String Id ,String producto , String descripcion , String Codigobarra , String precio , String stock)
-    {
-         IdStore.setText(Id);
-         Producto.setText(producto);
-         TxtDescripcion.setText(descripcion);
-         CodigoBarra.setText(Codigobarra);
-         TxtPrecio.setText(precio);
-         TxtStock.setText(stock);
-    }
 
     void FuncionEditarRoot(String string, String string0, String string1, String string2, String string3, String string4, String string5) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

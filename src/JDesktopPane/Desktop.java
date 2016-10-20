@@ -65,6 +65,7 @@ public class Desktop extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -79,6 +80,7 @@ public class Desktop extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -172,9 +174,22 @@ public class Desktop extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton7);
 
+        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/credit_card.png"))); // NOI18N
+        jButton8.setText("[F5] CREDITOS");
+        jButton8.setFocusable(false);
+        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton8);
+
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Order.png"))); // NOI18N
-        jButton6.setText("[F5] RESUMEN");
+        jButton6.setText("[F6] RESUMEN");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -188,7 +203,7 @@ public class Desktop extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clean.png"))); // NOI18N
-        jButton5.setText("[F6] LIMPIAR");
+        jButton5.setText("[F7] LIMPIAR");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -276,7 +291,16 @@ public class Desktop extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem6);
 
-        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem16.setText("Creditos");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem16);
+
+        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem14.setText("Limpiar");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,7 +339,7 @@ public class Desktop extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         jMenuItem5.setText("Resumen");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -475,6 +499,14 @@ public class Desktop extends javax.swing.JFrame {
         CallClients();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+      CallCredit();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        CallCredit();
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -518,6 +550,7 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -531,6 +564,7 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -600,13 +634,13 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
             Store.show(); 
         }else
         {
-        Store Store = new Store();
-        Store.NivelDeUsuario = NivelDeUsuario;
-        Store.UsuarioDeTrabajador = UsuarioDeTrabajador;
-        Escritorio.add(Store);
-        Store.toFront();
-        Store.setLocation(DesktopEscritorioX(Store.getWidth()),DesktopEscritorioy(Store.getHeight()));
-        Store.show();
+            Store Store = new Store();
+            Store.NivelDeUsuario = NivelDeUsuario;
+            Store.UsuarioDeTrabajador = UsuarioDeTrabajador;
+            Escritorio.add(Store);
+            Store.toFront();
+            Store.setLocation(DesktopEscritorioX(Store.getWidth()),DesktopEscritorioy(Store.getHeight()));
+            Store.show();
         }
     }
     private void CallSales ()
@@ -677,6 +711,7 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
             Resumen Reports = new Resumen ();
             Desktop.Escritorio.add(Reports);
             Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
+            Reports.toFront();
             Reports.show();
         }
     }
@@ -691,6 +726,7 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
             Inventario Reports = new Inventario ();
             Desktop.Escritorio.add(Reports);
             Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
+            Reports.toFront();
             Reports.show();
         }
     }
@@ -732,6 +768,7 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
             Staff Reports = new Staff(NivelDeUsuario, UsuarioDeTrabajador);
             Desktop.Escritorio.add(Reports);
             Reports.setLocation(Desktop.Escritorio.getWidth() / 2 - Reports.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - Reports.getHeight() / 2);
+            Reports.toFront();
             Reports.show();
         }
     }
@@ -833,6 +870,12 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
         Desktop.Escritorio.add(clientes);
         clientes.NivelDeUsuario = NivelDeUsuario;
         clientes.setLocation(Desktop.Escritorio.getWidth() / 2 - clientes.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - clientes.getHeight() / 2);
+        clientes.toFront();
         clientes.show();
+    }
+
+    private void CallCredit() 
+    {
+        JOptionPane.showConfirmDialog(Desktop.Escritorio,"creditos");
     }
 }

@@ -1103,7 +1103,7 @@ private String NombreMes ()
     DateSearchTable ();
             try {
                 Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-                String sql = "select * from productos where nombre like '%"+TxtBarCode.getText()+"%' or descripcion like '%"+TxtBarCode.getText()+"%'";
+                String sql = "select * from productos where nombre like '%"+TxtBarCode.getText()+"%' or descripcion like '%"+TxtBarCode.getText()+"%' or codigo = '"+ TxtBarCode.getText().replace(" ", "") +"' ";
                 ResultSet rs = Coneccion.Consulta(sql);
                 DefaultTableModel DefaultTableModel = new DefaultTableModel(){
                     public boolean isCellEditable(int rowIndex,int columnIndex){return false;}

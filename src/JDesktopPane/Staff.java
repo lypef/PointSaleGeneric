@@ -325,7 +325,7 @@ private void ModeloTabla (){
             EditUserSystem EditStaff = new EditUserSystem(NivelDeUsuario, Tabla.getValueAt(Seleccion, 0).toString());
             Desktop.Escritorio.add(EditStaff);
             EditStaff.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStaff.getWidth() /2, Desktop.Escritorio.getHeight() / 2 - EditStaff.getHeight() / 2);
-            EditStaff.show();            
+            EditStaff.show();
         }
         
         

@@ -333,12 +333,11 @@ public class Store extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     private void CallEditar (int x)
     {
-        EditStore EditStore = new EditStore ();
+        EditStore EditStore = new EditStore ((String)Tabla.getValueAt(x, 0),(String)Tabla.getValueAt(x, 1),(String)Tabla.getValueAt(x, 2),(String)Tabla.getValueAt(x, 3),
+                (String)Tabla.getValueAt(x, 4),(String)Tabla.getValueAt(x, 5), NivelDeUsuario);
         Desktop.Escritorio.add(EditStore);
         EditStore.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStore.getWidth() / 2 ,Desktop.Escritorio.getHeight() / 2 - EditStore.getHeight() / 2);
         EditStore.toFront();
-        EditStore.FuncionEditarRoot((String)Tabla.getValueAt(x, 0),(String)Tabla.getValueAt(x, 1),(String)Tabla.getValueAt(x, 2),(String)Tabla.getValueAt(x, 3),
-                (String)Tabla.getValueAt(x, 4),(String)Tabla.getValueAt(x, 5));
         EditStore.show();
 
     }
@@ -442,40 +441,47 @@ public class Store extends javax.swing.JInternalFrame {
         }
     }
 
-  private void CallDelete() {
-    int seleccion = Tabla.getSelectedRow();
-    
-    if (seleccion == -1)
+  private void CallDelete() 
+  {
+    if (NivelDeUsuario.equalsIgnoreCase("root"))
     {
-    JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione un producto.");
-    }else{
-        if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Esta seguro que desea eliminar el producto : " + (String) Tabla.getValueAt(seleccion,1),"¿Esta seguro?", 0) == 0){
-        try {
-            Clases.ConexionBD coneccion = new Clases.ConexionBD();
-            String sql = "delete from productos where id = '"+Integer.parseInt((String) Tabla.getValueAt(seleccion,0))+"'";
-            coneccion.ejecutar(sql);
-            BtnUpdate.doClick();
-        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Error, el producto no se elimino.");
+        int seleccion = Tabla.getSelectedRow();
+
+        if (seleccion == -1)
+        {
+        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione un producto.");
+        }else{
+            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Esta seguro que desea eliminar el producto : " + (String) Tabla.getValueAt(seleccion,1),"¿Esta seguro?", 0) == 0){
+            try {
+                Clases.ConexionBD coneccion = new Clases.ConexionBD();
+                String sql = "delete from productos where id = '"+Integer.parseInt((String) Tabla.getValueAt(seleccion,0))+"'";
+                coneccion.ejecutar(sql);
+                BtnUpdate.doClick();
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Error, el producto no se elimino.");
+            }
+            }
+
         }
-        }
-        
+    }else
+    {
+        JOptionPane.showInternalMessageDialog(Desktop.Escritorio, "Acceso no autorizado.");
     }
-    }
+  }
 
     private void BtnFunctionEditProduct() {
         if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
         }else
         {
         int x = Tabla.getSelectedRow();
         if (x == -1)
         {
-        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione articulo a editar");
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Seleccione articulo a editar");
         }else
         {
-        CallEditar (x);
+            CallEditar (x);
         }
         }
     }
