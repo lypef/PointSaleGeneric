@@ -93,6 +93,11 @@ public class Desktop extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
 
@@ -108,7 +113,7 @@ public class Desktop extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1227, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,13 +374,53 @@ public class Desktop extends javax.swing.JFrame {
 
         jMenu5.setText("Mantenimiento");
 
-        jMenuItem13.setText("Vaciar movimientos");
+        jMenuItem13.setText("Eliminar todos los clientes");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
             }
         });
         jMenu5.add(jMenuItem13);
+
+        jMenuItem17.setText("Eliminar todos los creditos");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem17);
+
+        jMenuItem18.setText("Eliminar todos los reportes de venta");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem18);
+
+        jMenuItem19.setText("Eliminar todos los productos");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem19);
+
+        jMenuItem20.setText("Eliminar todos los proveedores");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem20);
+
+        jMenuItem21.setText("Eliminar todos los datos");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem21);
 
         jMenuBar2.add(jMenu5);
 
@@ -397,8 +442,10 @@ public class Desktop extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1227, Short.MAX_VALUE)
             .addComponent(Escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,7 +511,7 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        JOptionPane.showMessageDialog(Desktop.Escritorio, "PUNTO DE VENTA DESARROLLADO POR:\n"+datos.ReturnDateMay("desarrollador")+"\nPARA: "+datos.ReturnDateMay("nombre")+"\nVERSION: "+datos.ReturnDateMay("version")+"\n"+datos.ReturnDateMay("web")+"");
+        DeveloperInfo();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -484,7 +531,7 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
+        VaciarTableN("clientes");
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -506,6 +553,26 @@ public class Desktop extends javax.swing.JFrame {
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         CallCredit();
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        VaciarTableN("creditos");
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        VaciarTableN("logs");
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        VaciarTableN("productos");
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        VaciarTableN("provedores");
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        VaciarTables();
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -565,7 +632,12 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -876,6 +948,58 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
 
     private void CallCredit() 
     {
-        JOptionPane.showConfirmDialog(Desktop.Escritorio,"creditos");
+        creditos jform = new creditos();
+        Desktop.Escritorio.add(jform);
+        jform.setLocation(Desktop.Escritorio.getWidth() / 2 - jform.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - jform.getHeight() / 2);
+        jform.toFront();
+        jform.show();
+    }
+
+    public void DeveloperInfo() {
+        JOptionPane.showMessageDialog(Desktop.Escritorio, "PUNTO DE VENTA DESARROLLADO POR:\n"+datos.ReturnDateMay("desarrollador")+"\nPARA: "+datos.ReturnDateMay("nombre")+"\nVERSION: "+datos.ReturnDateMay("version")+"\n"+datos.ReturnDateMay("web")+"");
+    }
+
+    private void VaciarTableN(String tabla) {
+        if (NivelDeUsuario.equalsIgnoreCase("root"))
+        {
+            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Todo el contenido de: "+tabla+" sera eliminado sin manera de recuperarse.","¿ALERTA!", 0) == 0)
+        {
+            try {
+                Clases.ConexionBD coneccion = new Clases.ConexionBD();
+                String sql = "truncate "+tabla+" ";
+                coneccion.ejecutar(sql);
+                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,tabla.toUpperCase() + ": ha sido vaciada correctamente.".toUpperCase());
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                JOptionPane.showMessageDialog(Desktop.Escritorio, ex);
+            }
+        }
+        }else
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
+        }
+        
+    }
+    private void VaciarTables() {
+        
+        if (NivelDeUsuario.equalsIgnoreCase("root"))
+        {
+            
+            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Todo el contenido del sistema sera eliminado sin manera de recuperarse.","¿ALERTA!", 0) == 0)
+            {
+                try {
+                    Clases.ConexionBD coneccion = new Clases.ConexionBD();
+                    String sql = "TRUNCATE clientes; TRUNCATE creditos; TRUNCATE logs; TRUNCATE productos; TRUNCATE provedores;";
+                    coneccion.ejecutar(sql);
+                    JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"El sistema ah sido vaciado por completo.".toUpperCase());
+                } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                    JOptionPane.showMessageDialog(Desktop.Escritorio, ex);
+                }
+            }
+            
+        }else
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
+        }
+        
     }
 }

@@ -266,8 +266,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Clases.ReturnDate datos = new Clases.ReturnDate();
-        JOptionPane.showMessageDialog(null, "PUNTO DE VENTA DESARROLLADO POR:\n"+datos.ReturnDateMay("desarrollador")+"\nPARA: "+datos.ReturnDateMay("nombre")+"\nVERSION: "+datos.ReturnDateMay("version")+"\n"+datos.ReturnDateMay("web")+"");
+        Desktop desktop = new Desktop();
+        desktop.DeveloperInfo();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void IngresoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresoUserActionPerformed

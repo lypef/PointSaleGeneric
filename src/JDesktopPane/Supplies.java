@@ -366,13 +366,7 @@ try {
             String sql = "delete from provedores where idprovedor = '"+Integer.parseInt((String) Tabla.getValueAt(seleccion,0))+"'";
             coneccion.ejecutar(sql);
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Proveedor eliminado correctamente.");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
         }
         }

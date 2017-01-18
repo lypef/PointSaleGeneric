@@ -209,9 +209,10 @@ public class Resumen extends javax.swing.JInternalFrame {
             
             while(rs.next())
             {
-                System.out.print(rs.getString(7));
+                
                 if (rs.getString(7).equals(fecha))
                 {
+                    System.out.print(rs.getString(7));
                     valores[0] = rs.getString(1);
                     valores[1] = rs.getString(2);
                     valores[2] = rs.getString(3);
@@ -224,13 +225,7 @@ public class Resumen extends javax.swing.JInternalFrame {
                 }
             }
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

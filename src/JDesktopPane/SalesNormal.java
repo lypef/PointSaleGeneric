@@ -86,6 +86,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         TxtCambio = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         jLabel3.setText("00000.00");
 
@@ -196,6 +197,14 @@ public class SalesNormal extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("Cambio:");
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/credit_card.png"))); // NOI18N
+        jButton5.setText("CREDITO");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,20 +215,21 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(TxtPagaCon))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addComponent(TxtPagaCon))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addComponent(TxtCambio))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(TxtCambio))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +255,10 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(10, 10, 10)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5))
         );
         layout.setVerticalGroup(
@@ -279,11 +292,13 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(TxtCambio)
                     .addComponent(jLabel8))
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -345,6 +360,29 @@ public class SalesNormal extends javax.swing.JInternalFrame {
         RemoveProduct();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        SalesCredit SalesNormal = new SalesCredit ();
+            for (int i = 0 ; i < TablaNotaVenta.getRowCount() ; i++)
+            {
+                SalesNormal.NotaDeVenta(
+                        Integer.parseInt((String) TablaNotaVenta.getValueAt(i, 0)),
+                        Integer.parseInt((String)TablaNotaVenta.getValueAt(i, 1)),
+                        (String)TablaNotaVenta.getValueAt(i, 2),
+                        (String)TablaNotaVenta.getValueAt(i, 3),
+                        Double.parseDouble((String)TablaNotaVenta.getValueAt(i, 4)));               
+            }
+            if (Double.parseDouble(TxtExtras.getText()) > 0)
+            {
+                SalesNormal.NotaDeVenta(1 , 0 , "s/n" , "EXTRAS" , Double.parseDouble( TxtExtras.getText() ) );               
+            }
+            
+            SalesNormal.TxtTotal(TxtTotal.getText());
+            Desktop.Escritorio.add(SalesNormal);
+            SalesNormal.setLocation(Desktop.Escritorio.getWidth() / 2 - SalesNormal.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - SalesNormal.getHeight() / 2);
+            this.dispose();
+            SalesNormal.show();    
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private String fecha()
     {
         Calendar fecha = new GregorianCalendar ();
@@ -379,6 +417,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -395,7 +434,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
         DefaultTableModel.setColumnIdentifiers(valores);
         TablaNotaVenta.setModel(DefaultTableModel);
     }
-        public void NotaDeVenta ( int piezas , int id , String CodigoBarra , String Producto , double precio)
+    public void NotaDeVenta ( int piezas , int id , String CodigoBarra , String Producto , double precio)
     {
         String Valores [] = new String [5];
         
@@ -634,13 +673,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                 }
             }
         
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalesNormal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(SalesNormal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(SalesNormal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(SalesNormal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
