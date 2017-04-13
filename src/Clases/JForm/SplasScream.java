@@ -40,7 +40,7 @@ public class SplasScream extends javax.swing.JFrame implements Runnable{
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 640, -1));
+        getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 640, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pointsale.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
