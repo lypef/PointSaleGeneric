@@ -5,14 +5,14 @@
  */
 package Clases;
 
-import JDesktopPane.Sales;
+
 import java.awt.Font;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -113,7 +113,29 @@ public class functions {
             Jtable_Style(Tabla);
             
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
+            Alert(ex.getMessage(), Alert_Error);
+        }   
+    }
+    
+    public void Familys_Get_ComboBox(JComboBox c) 
+    {
+        try {
+            Lista_Familia.clear();
+            c.removeAllItems();
+            
+            db = new ConexionBD();
+            
+            ResultSet rs = db.Consulta("SELECT * FROM `familys` ORDER BY nombre ASC");
+
+            
+            while (rs.next())
+            {
+                Lista_Familia.add(rs.getString(1));
+                c.addItem(rs.getString(2));
+            }
+            
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Alert(ex.getMessage(), Alert_Error);
         }   
     }
     
@@ -157,5 +179,85 @@ public class functions {
         }
                 
         return r;
+    }
+    
+    public void Family_Edit_Get (JTextField TxtNombre, JTextArea TxtDescripcion, int id)
+    {
+        try {
+            db = new Clases.ConexionBD();
+            
+            ResultSet rs = db.Consulta("SELECT * FROM familys where id = "+id+" ; ");
+            
+            if (rs.next())
+            {
+                TxtNombre.setText(rs.getString(2));
+                TxtDescripcion.setText(rs.getString(3));
+            }
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Alert(ex.getMessage(), Alert_Error);
+        }
+    }
+    
+    public boolean Family_update (JTextField TxtNombre, JTextArea TxtDescripcion, Integer id)
+    {
+        boolean r = false;
+        
+        try 
+        {
+            db = new ConexionBD ();
+            if (db.ejecutar("UPDATE `familys` SET `nombre` = '"+TxtNombre.getText()+"', `descripcion` = '"+TxtDescripcion.getText()+"' WHERE id = "+id+";") > 0)
+            {
+                r = true;
+            }
+        } 
+        catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) 
+        {
+            Alert(ex.getMessage(),Alert_Error);
+        }
+                
+        return r;
+    }
+    
+    public void Store_Get (JTable t, String sql0)
+    {
+        try {
+            db = new Clases.ConexionBD();
+            DefaultTableModel DefaultTableModel = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
+            };
+            
+            String ValoresTabla [] = {"Id","Producto","Familia","C. Barra","P. Publico","P. Costo","Stock"};
+            DefaultTableModel.setColumnIdentifiers(ValoresTabla);
+            t.setModel(DefaultTableModel);
+            t.getColumnModel().getColumn(0).setPreferredWidth(1);
+            t.getColumnModel().getColumn(1).setPreferredWidth(450);
+            t.getTableHeader().setReorderingAllowed(false);
+            
+            String sql = "select p.id, p.nombre, f.nombre, p.codigo, p.precio, p.stock, p.vendidos, p.p_costo from productos p, familys f WHERE p.family = f.id";
+            
+            if (!sql0.isEmpty()) 
+            {
+                sql = sql0;
+            }
+            
+            ResultSet rs = db.Consulta(sql);
+            
+            String valores [] = new String [7];
+            
+            while (rs.next()){
+                valores [0] = rs.getString(1);
+                valores [1] = rs.getString(2);
+                valores [2] = rs.getString(3);
+                valores [3] = rs.getString(4);
+                valores [4] = rs.getString(5);
+                valores [5] = rs.getString(8);
+                valores [6] = rs.getString(6);
+                DefaultTableModel.addRow(valores);
+            }
+            Jtable_Style(t);
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Alert(ex.getMessage(), Alert_Error);
+        }
     }
 }

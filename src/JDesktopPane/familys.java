@@ -20,6 +20,8 @@ public class familys extends javax.swing.JInternalFrame {
      */
     
     functions f = new functions();
+    static int id = 0;
+    static boolean add = true;
     
     public familys() {
         initComponents();
@@ -37,12 +39,14 @@ public class familys extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        BtnAdd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TxtNombre = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtDescripcion = new javax.swing.JTextArea();
+        BtnCancelar = new javax.swing.JButton();
+        BtnAdd1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(942, 561));
 
@@ -54,10 +58,11 @@ public class familys extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        jButton2.setText("AGREGAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnAdd.setBackground(new java.awt.Color(167, 230, 91));
+        BtnAdd.setText("AGREGAR");
+        BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnAddActionPerformed(evt);
             }
         });
 
@@ -76,32 +81,53 @@ public class familys extends javax.swing.JInternalFrame {
         TxtDescripcion.setPreferredSize(null);
         jScrollPane2.setViewportView(TxtDescripcion);
 
+        BtnCancelar.setBackground(new java.awt.Color(230, 207, 91));
+        BtnCancelar.setText("CANCELAR");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
+
+        BtnAdd1.setBackground(new java.awt.Color(230, 111, 91));
+        BtnAdd1.setText("SALIR");
+        BtnAdd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAdd1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+                    .addComponent(BtnAdd1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(TxtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -109,28 +135,42 @@ public class familys extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnAdd)
+                    .addComponent(BtnCancelar)
+                    .addComponent(BtnAdd1))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (f.Family_Add(TxtNombre, TxtDescripcion))
+    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
+        if (add)
         {
-            f.Familys_Get(Tabla);
-            f.Alert("Familia agregada", functions.Alert_Informacion);
+            if (f.Family_Add(TxtNombre, TxtDescripcion))
+            {
+                f.Familys_Get(Tabla);
+                f.Alert("Familia agregada", functions.Alert_Informacion);
+            }
+        }else
+        {
+            if (f.Family_update(TxtNombre, TxtDescripcion, id))
+            {
+                clean();
+                f.Alert("Familia actualizada", functions.Alert_Informacion);
+            }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_BtnAddActionPerformed
 
     private void TablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMousePressed
         if (evt.getClickCount() == 2)
         {
-            int id = Integer.parseInt((String) f.Lista_Familia.get(Tabla.getSelectedRow()));
+            id = Integer.parseInt((String) f.Lista_Familia.get(Tabla.getSelectedRow()));
             
             ButtonGroup Group = new ButtonGroup();
 
@@ -153,8 +193,11 @@ public class familys extends javax.swing.JInternalFrame {
                 JOptionPane.INFORMATION_MESSAGE,null,
                 new Object[] { "ACEPTAR",chec0, chec1, chec2},"ACEPTAR");
 
-            if (chec1.isSelected()){
-                f.Familys_Get(Tabla);
+            if (chec1.isSelected())
+            {
+                add = false;
+                f.Family_Edit_Get(TxtNombre, TxtDescripcion, id);
+                BtnAdd.setText("Actualizar");
             }
             
             if (chec2.isSelected())
@@ -175,16 +218,35 @@ public class familys extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_TablaMousePressed
 
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        clean();
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void BtnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdd1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BtnAdd1ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAdd;
+    private javax.swing.JButton BtnAdd1;
+    private javax.swing.JButton BtnCancelar;
     private javax.swing.JTable Tabla;
     private javax.swing.JTextArea TxtDescripcion;
     private javax.swing.JTextField TxtNombre;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    private void clean() {
+        f.Familys_Get(Tabla);
+        BtnAdd.setText("Agregar");
+        TxtNombre.setText("");
+        TxtDescripcion.setText("");
+        id = 0;
+        add = true;
+    }
     
 }

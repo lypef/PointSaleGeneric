@@ -6,12 +6,11 @@
 
 package JDesktopPane;
 
-import Clases.ConexionBD;
+import Clases.functions;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.logging.Level;
@@ -33,10 +32,12 @@ public class Store extends javax.swing.JInternalFrame {
     String NivelDeUsuario , UsuarioDeTrabajador;
     Clases.ReturnDate datos = new Clases.ReturnDate();
     
+    functions f = new functions();
+    
     public Store() {
         initComponents();
         this.setTitle("STOCK - " + datos.ReturnDateMay("nombre"));
-        Muestra();      
+        f.Store_Get(Tabla,"");
     }
 
     /**
@@ -56,7 +57,7 @@ public class Store extends javax.swing.JInternalFrame {
         BtnUpdate = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        TextModelo = new javax.swing.JTextField();
+        TxtSearch = new javax.swing.JTextField();
         ButonSearch = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -134,21 +135,21 @@ public class Store extends javax.swing.JInternalFrame {
             }
         });
 
-        TextModelo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        TextModelo.setText("// MODELO");
-        TextModelo.addMouseListener(new java.awt.event.MouseAdapter() {
+        TxtSearch.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TxtSearch.setText("// MODELO");
+        TxtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TextModeloMouseClicked(evt);
+                TxtSearchMouseClicked(evt);
             }
         });
-        TextModelo.addActionListener(new java.awt.event.ActionListener() {
+        TxtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextModeloActionPerformed(evt);
+                TxtSearchActionPerformed(evt);
             }
         });
-        TextModelo.addKeyListener(new java.awt.event.KeyAdapter() {
+        TxtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TextModeloKeyPressed(evt);
+                TxtSearchKeyPressed(evt);
             }
         });
 
@@ -172,48 +173,43 @@ public class Store extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(543, 543, 543)
-                        .addComponent(TextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TxtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ButonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1008, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1008, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ButonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(TextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addComponent(ButonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Imprimir)
@@ -253,8 +249,8 @@ public class Store extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
-        TextModelo.setText("// MODELO");
-        Muestra ();
+        TxtSearch.setText("// MODELO");
+        f.Store_Get(Tabla,"");
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -265,12 +261,12 @@ public class Store extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        TextModelo.setText("// MODELO");
-        Muestra();
+        TxtSearch.setText("// MODELO");
+        f.Store_Get(Tabla,"");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void ButonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButonSearchActionPerformed
-        if (!TextModelo.getText().equalsIgnoreCase("// MODELO"))
+        if (!TxtSearch.getText().equalsIgnoreCase("// MODELO"))
         {
             SearchModel();
         }else
@@ -280,24 +276,24 @@ public class Store extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ButonSearchActionPerformed
 
-    private void TextModeloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextModeloKeyPressed
+    private void TxtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtSearchKeyPressed
         if (evt.getKeyCode()== KeyEvent.VK_ENTER)
         { 
             ButonSearch.doClick();
         }
-    }//GEN-LAST:event_TextModeloKeyPressed
+    }//GEN-LAST:event_TxtSearchKeyPressed
 
-    private void TextModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TextModeloMouseClicked
-        TextModelo.setText("");
-    }//GEN-LAST:event_TextModeloMouseClicked
+    private void TxtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtSearchMouseClicked
+        TxtSearch.setText("");
+    }//GEN-LAST:event_TxtSearchMouseClicked
 
     private void TablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TablaKeyPressed
 
     }//GEN-LAST:event_TablaKeyPressed
 
-    private void TextModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextModeloActionPerformed
+    private void TxtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextModeloActionPerformed
+    }//GEN-LAST:event_TxtSearchActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
@@ -323,7 +319,7 @@ public class Store extends javax.swing.JInternalFrame {
     private javax.swing.JButton ButonSearch;
     private javax.swing.JButton Imprimir;
     private javax.swing.JTable Tabla;
-    private javax.swing.JTextField TextModelo;
+    private javax.swing.JTextField TxtSearch;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -331,57 +327,17 @@ public class Store extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+    
     private void CallEditar (int x)
     {
         EditStore EditStore = new EditStore ((String)Tabla.getValueAt(x, 0),(String)Tabla.getValueAt(x, 1),(String)Tabla.getValueAt(x, 2),(String)Tabla.getValueAt(x, 3),
-                (String)Tabla.getValueAt(x, 4),(String)Tabla.getValueAt(x, 5), NivelDeUsuario);
+                (String)Tabla.getValueAt(x, 4),(String)Tabla.getValueAt(x, 6), NivelDeUsuario, (String)Tabla.getValueAt(x, 5));
         Desktop.Escritorio.add(EditStore);
         EditStore.setLocation(Desktop.Escritorio.getWidth() / 2 - EditStore.getWidth() / 2 ,Desktop.Escritorio.getHeight() / 2 - EditStore.getHeight() / 2);
         EditStore.toFront();
         EditStore.show();
 
     }
-    private void Muestra () 
-    {
-        try {
-            Clases.ConexionBD ConexionBD = new Clases.ConexionBD();
-            DefaultTableModel DefaultTableModel = new DefaultTableModel(){
-            public boolean isCellEditable(int rowIndex,int columnIndex){return false;} 
-            };
-       
-            String ValoresTabla [] = {"Id","Producto","Descripcion","Codigo de barra","Precio","Stock"};
-            DefaultTableModel.setColumnIdentifiers(ValoresTabla);
-            Tabla.setModel(DefaultTableModel);
-            Tabla.getColumnModel().getColumn(0).setPreferredWidth(1);
-            Tabla.getColumnModel().getColumn(1).setPreferredWidth(250);
-            Tabla.getColumnModel().getColumn(2).setPreferredWidth(400);
-            Tabla.getTableHeader().setReorderingAllowed(false);
-            String sql = "select * from productos";
-            ResultSet rs = ConexionBD.Consulta(sql);
-            
-            String valores [] = new String [6];
-            
-            while (rs.next()){
-                valores [0] = rs.getString(1);
-                valores [1] = rs.getString(2);
-                valores [2] = rs.getString(3); 
-                valores [3] = rs.getString(4);
-                valores [4] = rs.getString(5);
-                valores [5] = rs.getString(6);            
-                DefaultTableModel.addRow(valores);
-            }
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }  
     
     private void Print() 
     {
@@ -398,47 +354,7 @@ public class Store extends javax.swing.JInternalFrame {
     
     private void SearchModel ()
     {
-                    try {
-            Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-            String sql = "select * from productos";
-            ResultSet rs = Coneccion.Consulta(sql);
-            DefaultTableModel DefaultTableModel = new DefaultTableModel(){
-            public boolean isCellEditable(int rowIndex,int columnIndex){return false;} 
-            };
-            
-            String ValoresTabla [] = {"Id","Producto","Descripcion","Codigo de barra","Precio","Stock"};
-            DefaultTableModel.setColumnIdentifiers(ValoresTabla);
-            Tabla.setModel(DefaultTableModel);
-            String valores [] = new String [6];
-            while (rs.next())
-            {
-            if (rs.getString(4).equalsIgnoreCase(TextModelo.getText()))
-            {
-                valores [0] = rs.getString(1);
-                valores [1] = rs.getString(2);
-                valores [2] = rs.getString(3); 
-                valores [3] = rs.getString(4);
-                valores [4] = rs.getString(5);
-                valores [5] = rs.getString(6);
-                DefaultTableModel.addRow(valores);
-            }
-            }
-            TextModelo.setText("");
-            if (Tabla.getRowCount() == 0)
-            {
-            Muestra();    
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"El modelo no ah sido encontrado");
-            TextModelo.setText("");
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Store.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        f.Store_Get(Tabla,"select p.id, p.nombre, f.nombre, p.codigo, p.precio, p.stock, p.vendidos, p.p_costo from productos p, familys f WHERE p.family = f.id and p.nombre LIKE '%"+TxtSearch.getText()+"%' or p.family = f.id and p.descripcion LIKE '%"+TxtSearch.getText()+"%' or p.family = f.id and p.codigo LIKE '%"+TxtSearch.getText()+"%' or p.family = f.id and f.nombre LIKE '%"+TxtSearch.getText()+"%' or p.family = f.id and f.descripcion LIKE '%"+TxtSearch.getText()+"%' ");
     }
 
   private void CallDelete() 

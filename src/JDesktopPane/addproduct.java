@@ -5,8 +5,7 @@
  */
 package JDesktopPane;
 
-import java.awt.event.KeyEvent;
-import static java.lang.Math.random;
+import Clases.functions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
@@ -23,8 +22,11 @@ public class addproduct extends javax.swing.JInternalFrame {
     /**
      * Creates new form addproduct
      */
+    functions f = new functions();
+    
     public addproduct() {
         initComponents();
+        f.Familys_Get_ComboBox(Combo);
     }
 
     /**
@@ -46,11 +48,16 @@ public class addproduct extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         TxtPrecio = new javax.swing.JTextField();
         TxtDescripcion = new javax.swing.JTextField();
-        TxtStock = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         GenerateCodigoDeBarra = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        Combo = new javax.swing.JComboBox<>();
+        TxtStock = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        TxtPrecioCosto = new javax.swing.JTextField();
 
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMaximumSize(new java.awt.Dimension(531, 425));
+        setMinimumSize(new java.awt.Dimension(531, 425));
 
         BtnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Exit-Exit.png"))); // NOI18N
         BtnExit.setText("Salir");
@@ -59,7 +66,6 @@ public class addproduct extends javax.swing.JInternalFrame {
                 BtnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 316, 153, 59));
 
         BtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AddBD.png"))); // NOI18N
         BtnAdd.setText("Registrar");
@@ -68,47 +74,33 @@ public class addproduct extends javax.swing.JInternalFrame {
                 BtnAddActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 316, 153, 59));
 
         TxtProducto.setBackground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(TxtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 34, 308, -1));
+        TxtProducto.setMaximumSize(new java.awt.Dimension(23, 39));
 
         jLabel1.setText("Producto:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 40, -1, -1));
 
         jLabel2.setText("Descripcion:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 110, -1, -1));
 
         TxtCodigoBarra.setBackground(new java.awt.Color(254, 254, 254));
+        TxtCodigoBarra.setMaximumSize(new java.awt.Dimension(23, 39));
         TxtCodigoBarra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TxtCodigoBarraKeyPressed(evt);
             }
         });
-        getContentPane().add(TxtCodigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 222, 308, -1));
 
-        jLabel3.setText("Codigo de barra:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 228, -1, -1));
+        jLabel3.setText("C. Barra");
 
-        jLabel4.setText("Precio:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 183, -1, -1));
+        jLabel4.setText("P. Publico:");
 
         TxtPrecio.setBackground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(TxtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 177, 308, -1));
+        TxtPrecio.setMaximumSize(new java.awt.Dimension(23, 39));
 
         TxtDescripcion.setBackground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(TxtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 79, 308, 86));
-
-        TxtStock.setBackground(new java.awt.Color(254, 254, 254));
-        TxtStock.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TxtStockKeyPressed(evt);
-            }
-        });
-        getContentPane().add(TxtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 261, 308, -1));
+        TxtDescripcion.setMaximumSize(new java.awt.Dimension(23, 39));
 
         jLabel5.setText("Stock:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 267, -1, -1));
 
         GenerateCodigoDeBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/codebar.png"))); // NOI18N
         GenerateCodigoDeBarra.setText("Generar");
@@ -117,7 +109,98 @@ public class addproduct extends javax.swing.JInternalFrame {
                 GenerateCodigoDeBarraActionPerformed(evt);
             }
         });
-        getContentPane().add(GenerateCodigoDeBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 316, 153, 59));
+
+        jLabel6.setText("Familia:");
+
+        Combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo.setMaximumSize(new java.awt.Dimension(23, 39));
+        Combo.setMinimumSize(new java.awt.Dimension(23, 39));
+        Combo.setPreferredSize(new java.awt.Dimension(23, 39));
+
+        TxtStock.setMaximumSize(new java.awt.Dimension(23, 39));
+        TxtStock.setMinimumSize(new java.awt.Dimension(23, 39));
+
+        jLabel7.setText("P. Costo:");
+
+        TxtPrecioCosto.setBackground(new java.awt.Color(254, 254, 254));
+        TxtPrecioCosto.setMaximumSize(new java.awt.Dimension(23, 39));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TxtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtCodigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TxtPrecioCosto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(GenerateCodigoDeBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(BtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TxtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel2))
+                    .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(TxtPrecioCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(TxtCodigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel5))
+                    .addComponent(TxtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(GenerateCodigoDeBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,28 +212,20 @@ public class addproduct extends javax.swing.JInternalFrame {
     private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
         ChangeToCapital();
         if (!TxtProducto.getText().isEmpty() && !TxtDescripcion.getText().isEmpty() 
-         && !TxtCodigoBarra.getText().isEmpty() && !TxtPrecio.getText().isEmpty() && !TxtStock.getText().isEmpty())
+         && !TxtCodigoBarra.getText().isEmpty() && !TxtPrecio.getText().isEmpty() && (int) TxtStock.getValue() > 0)
         {
             AddDates();
             Clean();
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Producto agregado");
         }
         else
         {
-            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Rellene todos los campos");            
+            f.Alert("Rellene todos los campos", functions.Alert_Warning);
         }
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void TxtCodigoBarraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCodigoBarraKeyPressed
      
     }//GEN-LAST:event_TxtCodigoBarraKeyPressed
-
-    private void TxtStockKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtStockKeyPressed
-    if (evt.getKeyCode()== KeyEvent.VK_ENTER)
-        { 
-            BtnAdd.doClick();
-        }          
-    }//GEN-LAST:event_TxtStockKeyPressed
 
     private void GenerateCodigoDeBarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateCodigoDeBarraActionPerformed
         GenerateCodigoDeBarra();
@@ -170,17 +245,21 @@ public class addproduct extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton BtnExit;
+    private javax.swing.JComboBox<String> Combo;
     private javax.swing.JButton GenerateCodigoDeBarra;
     private javax.swing.JTextField TxtCodigoBarra;
     private javax.swing.JTextField TxtDescripcion;
     private javax.swing.JTextField TxtPrecio;
+    private javax.swing.JTextField TxtPrecioCosto;
     private javax.swing.JTextField TxtProducto;
-    private javax.swing.JTextField TxtStock;
+    private javax.swing.JSpinner TxtStock;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 
     private void ChangeToCapital() 
@@ -198,23 +277,12 @@ public class addproduct extends javax.swing.JInternalFrame {
            
             Clases.ConexionBD coneccion = new Clases.ConexionBD();
             
-            String insert = "INSERT INTO `productos`(`nombre`,`descripcion`, `codigo`, `precio`, `stock`,`vendidos` ) "
-                    + "VALUES "
-                    + "('"+TxtProducto.getText()+"','"+TxtDescripcion.getText()+"','"+TxtCodigoBarra.getText()+"','"+Float.parseFloat(TxtPrecio.getText())+"','"+Integer.parseInt(TxtStock.getText())+"','"+"0"+"')";
-                 coneccion.ejecutar(insert);
-        
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addproduct.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error");
-        } catch (SQLException ex) {
-            Logger.getLogger(addproduct.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error");
-        } catch (InstantiationException ex) {
-            Logger.getLogger(addproduct.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error");
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(addproduct.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error");
+            String insert = "INSERT INTO `productos`(`nombre`,`descripcion`, `codigo`, `precio`, `stock`,`vendidos`, family, p_costo ) VALUES ('"+TxtProducto.getText()+"','"+TxtDescripcion.getText()+"','"+TxtCodigoBarra.getText()+"','"+Float.parseFloat(TxtPrecio.getText())+"','"+ (int) TxtStock.getValue()+"', 0, "+f.Lista_Familia.get(Combo.getSelectedIndex())+", '"+Float.parseFloat(TxtPrecioCosto.getText())+"');";
+            
+            coneccion.ejecutar(insert);
+            f.Alert("Producto agregado", functions.Alert_Informacion);
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            f.Alert(ex.getMessage(),functions.Alert_Error);
         }
     }
 
@@ -224,7 +292,7 @@ public class addproduct extends javax.swing.JInternalFrame {
         TxtDescripcion.setText("");
         TxtCodigoBarra.setText("");
         TxtPrecio.setText("");
-        TxtStock.setText("");
+        TxtStock.setValue(0);
     }
     
     private boolean CodeBarExiste ()
