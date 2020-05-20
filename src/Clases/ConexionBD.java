@@ -9,13 +9,14 @@ import java.sql.*;
  *
  * @author Lypef
  */
-public class ConexionBD {
-    private Connection con;
-    private Statement  sentSQL;
-    private ResultSet rst;
-    
-    
-public ConexionBD () throws ClassNotFoundException,SQLException,InstantiationException,IllegalAccessException{
+    public class ConexionBD {
+        private Connection con;
+        private Statement  sentSQL;
+        private ResultSet rst;
+
+
+    public ConexionBD () throws ClassNotFoundException,SQLException,InstantiationException,IllegalAccessException
+    {
         //cargar el controlador jdbc
         String controlador="com.mysql.jdbc.Driver";
         Class.forName(controlador).newInstance();
@@ -45,14 +46,12 @@ public void conectar() throws SQLException{
 
   
     // metodo para ejecutar sentencia sql
-     public String ejecutar(String sql) throws SQLException
-		  {
-                      //executeUpdate nos sirve para hacer UPDATE, INSERT y ese tipo de sentencias que modifican la base de datos
-                      // no se necesita devolver algo
-                       sentSQL.executeUpdate(sql);
-                       
-		  return "";
-		  }
+    public int ejecutar(String sql) throws SQLException
+    {
+        //executeUpdate nos sirve para hacer UPDATE, INSERT y ese tipo de sentencias que modifican la base de datos
+        // no se necesita devolver algo
+        return sentSQL.executeUpdate(sql);
+    }
      
      //metodo para ejecutar consultas de sentencias sql en la base de datos
      public ResultSet Consulta(String sql) throws SQLException{

@@ -38,11 +38,11 @@ public class Desktop extends javax.swing.JFrame {
             setExtendedState(MAXIMIZED_BOTH);
             Desktop.setDefaultLookAndFeelDecorated(true);
             JDialog.setDefaultLookAndFeelDecorated(true);
-        try {
+        /*try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Desktop.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
     }
 
@@ -58,6 +58,7 @@ public class Desktop extends javax.swing.JFrame {
         Escritorio = new javax.swing.JDesktopPane();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -74,6 +75,7 @@ public class Desktop extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -95,30 +97,29 @@ public class Desktop extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        Escritorio.setBackground(java.awt.Color.white);
+        Escritorio.setBackground(new java.awt.Color(238, 238, 238));
         Escritorio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1227, Short.MAX_VALUE)
+            .addGap(0, 1466, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 461, Short.MAX_VALUE)
         );
 
-        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jToolBar1.setBackground(new java.awt.Color(229, 42, 42));
         jToolBar1.setBorder(null);
-        jToolBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jToolBar1.setForeground(new java.awt.Color(213, 29, 29));
         jToolBar1.setRollover(true);
         jToolBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -135,9 +136,22 @@ public class Desktop extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
+        jButton11.setBackground(new java.awt.Color(255, 255, 255));
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/3209291-32.png"))); // NOI18N
+        jButton11.setText("[F2] FAMILIAS");
+        jButton11.setFocusable(false);
+        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton11);
+
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Truck32.png"))); // NOI18N
-        jButton10.setText("[F2] PROVEDORES");
+        jButton10.setText("[F3] PROVEDORES");
         jButton10.setFocusable(false);
         jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -150,7 +164,7 @@ public class Desktop extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buy.png"))); // NOI18N
-        jButton3.setText("[F3] VENTA");
+        jButton3.setText("[F4] VENTA");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -163,7 +177,7 @@ public class Desktop extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Bill.png"))); // NOI18N
-        jButton7.setText("[F4] INVENTARIO");
+        jButton7.setText("[F5] INVENTARIO");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton7.setFocusable(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -177,7 +191,7 @@ public class Desktop extends javax.swing.JFrame {
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/credit_card.png"))); // NOI18N
-        jButton8.setText("[F5] CREDITOS");
+        jButton8.setText("[F6] CREDITOS");
         jButton8.setFocusable(false);
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -190,7 +204,7 @@ public class Desktop extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Order.png"))); // NOI18N
-        jButton6.setText("[F6] RESUMEN");
+        jButton6.setText("[F7] RESUMEN");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -204,7 +218,7 @@ public class Desktop extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clean.png"))); // NOI18N
-        jButton5.setText("[F7] LIMPIAR");
+        jButton5.setText("[F8] LIMPIAR");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -274,7 +288,16 @@ public class Desktop extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem22.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem22.setText("Familias");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem22);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jMenuItem3.setText("Provedores");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +306,7 @@ public class Desktop extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         jMenuItem6.setText("Ventas");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +315,7 @@ public class Desktop extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem6);
 
-        jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         jMenuItem16.setText("Creditos");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +324,7 @@ public class Desktop extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem16);
 
-        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
         jMenuItem14.setText("Limpiar");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,7 +354,7 @@ public class Desktop extends javax.swing.JFrame {
 
         jMenu2.setText("Finanzas");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         jMenuItem2.setText("Inventario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,7 +363,7 @@ public class Desktop extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem5.setText("Resumen");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,16 +443,12 @@ public class Desktop extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu5);
 
-        jMenu4.setText("Ayuda");
-
-        jMenuItem7.setText("Acerca de");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+        jMenu4.setText("Acerca de");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu4MousePressed(evt);
             }
         });
-        jMenu4.add(jMenuItem7);
-
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
@@ -506,10 +525,6 @@ public class Desktop extends javax.swing.JFrame {
         CallConsultas();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        DeveloperInfo();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         Clean ();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
@@ -570,6 +585,18 @@ public class Desktop extends javax.swing.JFrame {
         VaciarTables();
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        CallFamylys();
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        CallFamylys();
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenu4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MousePressed
+        DeveloperInfo();
+    }//GEN-LAST:event_jMenu4MousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -608,6 +635,7 @@ public class Desktop extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -634,11 +662,11 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -754,7 +782,7 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
 
     private void CallLogin() {
         this.dispose();
-        Clases.Main.main(null);
+        //Clases.Main.main(null);
     }
 
     private void CallExit() {
@@ -952,7 +980,7 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
     }
 
     public void DeveloperInfo() {
-        JOptionPane.showMessageDialog(Desktop.Escritorio, "PUNTO DE VENTA DESARROLLADO POR:\n"+datos.ReturnDateMay("desarrollador")+"\nPARA: "+datos.ReturnDateMay("nombre")+"\nVERSION: "+datos.ReturnDateMay("version")+"\n"+datos.ReturnDateMay("web")+"");
+        JOptionPane.showMessageDialog(Desktop.Escritorio, "CLTA DESARROLLO & DISTRIBUCION DE SOFTWARE\n\nLicencia para: "+datos.ReturnDateMay("nombre")+"\n\nV. "+datos.ReturnDateMay("version")+" | "+datos.ReturnDateMay("web")+"");
     }
 
     private void VaciarTableN(String tabla) {
@@ -997,5 +1025,19 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso denegado");
         }
         
+    }
+
+    private void CallFamylys() {
+        if (NivelDeUsuario.equalsIgnoreCase("vendedor"))
+        {
+            JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Acceso negado");
+        }else
+        {
+            familys jform = new familys();
+            Desktop.Escritorio.add(jform);
+            jform.setLocation(Desktop.Escritorio.getWidth() / 2 - jform.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - jform.getHeight() / 2);
+            jform.toFront();
+            jform.show();
+        }
     }
 }
