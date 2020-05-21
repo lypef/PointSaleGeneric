@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 20-05-2020 a las 00:40:51
+-- Tiempo de generación: 21-05-2020 a las 10:46:49
 -- Versión del servidor: 10.3.22-MariaDB-1ubuntu1
 -- Versión de PHP: 7.4.5
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `PointSaleGeneric`
 --
-CREATE DATABASE IF NOT EXISTS `PointSaleGeneric` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `PointSaleGeneric`;
 
 -- --------------------------------------------------------
 
@@ -103,8 +101,9 @@ CREATE TABLE `familys` (
 --
 
 INSERT INTO `familys` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'REFRESCOS', 'REFRESCOS CON GAS\r\n'),
-(2, 'ENLATADOS', 'PRODUCTOS ENLATADOS\r\n');
+(8, 'ENLATADOS', 'PRODUCTOS ENLATADOS\r\n'),
+(13, 'REFRESCOS', 'REFRESCOS Y DERIVADOS'),
+(14, 'SEMILLAS', 'SEMILLAS Y DERIVADOS');
 
 -- --------------------------------------------------------
 
@@ -122,6 +121,15 @@ CREATE TABLE `logs` (
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `logs`
+--
+
+INSERT INTO `logs` (`id`, `producto`, `codigo`, `precio`, `piezas`, `hora`, `fecha`) VALUES
+(1, 'COCACOLA 600 ML', '60788', 17, 1, '03:40:49', '2020-05-20'),
+(2, 'WDWDWD', '99262', 1500, 1, '03:40:49', '2020-05-20'),
+(3, 'AVENA MOLIDA', '111', 1500, 1, '03:40:49', '2020-05-20');
+
 -- --------------------------------------------------------
 
 --
@@ -133,11 +141,21 @@ CREATE TABLE `productos` (
   `nombre` varchar(254) NOT NULL,
   `descripcion` varchar(254) NOT NULL,
   `codigo` varchar(254) NOT NULL,
-  `precio` float NOT NULL,
+  `precio` decimal(65,2) NOT NULL,
   `stock` int(11) NOT NULL,
   `vendidos` int(11) NOT NULL,
-  `family` int(11) NOT NULL
+  `family` int(11) NOT NULL,
+  `p_costo` decimal(65,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `codigo`, `precio`, `stock`, `vendidos`, `family`, `p_costo`) VALUES
+(1, 'AVENA MOLIDA', 'FEFEFE', '111', '1500.00', 0, 1, 14, '999.59'),
+(2, 'WDWDWD', 'WDWDW', '99262', '1500.00', 21, 1, 14, '25.00'),
+(3, 'COCACOLA 600 ML', 'DESCIPCION', '60788', '17.00', 0, 1, 13, '14.00');
 
 -- --------------------------------------------------------
 
@@ -153,6 +171,13 @@ CREATE TABLE `provedores` (
   `telefono` varchar(254) NOT NULL,
   `rfc` varchar(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `provedores`
+--
+
+INSERT INTO `provedores` (`idprovedor`, `empresa`, `direccion`, `email`, `telefono`, `rfc`) VALUES
+(1, 'QSQ', 'SQSQ', 'SQSQS', 'qsqsq', 'QSQS');
 
 -- --------------------------------------------------------
 
@@ -246,19 +271,19 @@ ALTER TABLE `creditos`
 -- AUTO_INCREMENT de la tabla `familys`
 --
 ALTER TABLE `familys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
