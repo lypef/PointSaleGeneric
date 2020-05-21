@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.accessibility.AccessibleRole;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -712,12 +713,8 @@ private String NombreMes ()
                 String ValoresTabla [] = {"Id","Producto","Descripcion","Codigo de barra","Precio","Stock"};
                 DefaultTableModel.setColumnIdentifiers(ValoresTabla);
                 TablaBusqueda.setModel(DefaultTableModel);
-                TablaBusqueda.getColumnModel().getColumn(0).setPreferredWidth(1);
-                TablaBusqueda.getColumnModel().getColumn(1).setPreferredWidth(200);
-                TablaBusqueda.getColumnModel().getColumn(2).setPreferredWidth(470);
-                TablaBusqueda.getColumnModel().getColumn(3).setPreferredWidth(130);
-                TablaBusqueda.getColumnModel().getColumn(4).setPreferredWidth(10);
-                TablaBusqueda.getColumnModel().getColumn(5).setPreferredWidth(10);
+                
+                
                 String valores [] = new String [6];
                 while (rs.next())
                 {
@@ -737,14 +734,18 @@ private String NombreMes ()
                 Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    private void DateSearchTableVenta() {
-                DefaultTableModel DefaultTableModel = new DefaultTableModel(){
-                    public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
-                };
-                String ValoresTabla [] = {"Piezas","Id","Codigo de barra","Producto","Precio"};
-                DefaultTableModel.setColumnIdentifiers(ValoresTabla);
-                TablaVenta.setModel(DefaultTableModel);
-                
+    
+    private void DateSearchTableVenta() 
+    {
+        DefaultTableModel DefaultTableModel = new DefaultTableModel()
+        {
+            public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
+        };
+        
+        String ValoresTabla [] = {"Piezas","Id","Codigo de barra","Producto","Precio"};
+        DefaultTableModel.setColumnIdentifiers(ValoresTabla);
+        
+        TablaVenta.setModel(DefaultTableModel);        
     }
     
     private void CancelSale() {
@@ -955,6 +956,7 @@ private String NombreMes ()
             CancelSale();
             DateSearchTable();
             Desktop.Escritorio.add(SalesNormal);
+            SalesNormal.user = UsuarioDeTrabajador;
             SalesNormal.setLocation(Desktop.Escritorio.getWidth() / 2 - SalesNormal.getWidth() / 2,Desktop.Escritorio.getHeight() / 2 - SalesNormal.getHeight() / 2);
             SalesNormal.show();    
          }else

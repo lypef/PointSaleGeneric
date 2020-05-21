@@ -6,17 +6,15 @@
 
 package JDesktopPane;
 
+import Clases.functions;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,11 +28,12 @@ public class Inventario extends javax.swing.JInternalFrame {
      */
     
     Clases.ReturnDate datos = new Clases.ReturnDate();
+    functions f = new functions();
     
     public Inventario() {
         initComponents();
         setTitle("INVENTARIO - " + datos.ReturnDateMay("nombre"));
-        ChargeDate("select * from productos");
+        f.Inventario_Get(TablaBusqueda, null);
     }
 
     /**
@@ -143,40 +142,31 @@ public class Inventario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(346, 346, 346))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(TextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ButonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                        .addComponent(Imprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(TextModelo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(TextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(ButonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Imprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -189,10 +179,11 @@ public class Inventario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
-        if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
+        /*if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
         {
            Print();
-        }
+        }*/
+        f.GenerateReport(TablaBusqueda, "REPORTE DE INVENTARIO", 1);
     }//GEN-LAST:event_ImprimirActionPerformed
 
     private void TextModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TextModeloMouseClicked
@@ -217,7 +208,7 @@ public class Inventario extends javax.swing.JInternalFrame {
     private void ButonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButonSearchActionPerformed
         if (!TextModelo.getText().replace(" ", "").equalsIgnoreCase("//CodigoBarra"))
         {
-            ChargeDate("select * from productos WHERE nombre LIKE '%"+ TextModelo.getText() +"%' OR descripcion LIKE '%"+ TextModelo.getText() +"%' OR codigo = '"+ TextModelo.getText() +"' ");
+            f.Inventario_Get(TablaBusqueda, "select p.nombre as nombre, p.codigo as c_barra, p.vendidos, p.stock as existencias, (p.stock + p.vendidos) as total, p.p_costo as p_costo, p.precio as p_publico, f.nombre as familias from productos p, familys f WHERE p.family = f.id and p.nombre LIKE '%"+ TextModelo.getText() +"%' OR p.family = f.id and p.descripcion LIKE '%"+ TextModelo.getText() +"%' OR p.family = f.id and p.codigo = '"+ TextModelo.getText() +"' order by f.nombre asc");
         }else
         {
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Ingrese valores para filtrar");
@@ -227,7 +218,7 @@ public class Inventario extends javax.swing.JInternalFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Clean();
-        ChargeDate("select * from productos WHERE stock < '"+ datos.ReturnDateMay("Productsfew") +"' ");
+        f.Inventario_Get(TablaBusqueda, "select p.nombre as nombre, p.codigo as c_barra, p.vendidos, p.stock as existencias, (p.stock + p.vendidos) as total, p.p_costo as p_costo, p.precio as p_publico, f.nombre as familias from productos p, familys f WHERE p.family = f.id and p.stock < '"+ datos.ReturnDateMay("Productsfew") +"' order by f.nombre asc");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
@@ -244,38 +235,6 @@ public class Inventario extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void ChargeDate(String sql) {
-            try {
-                Clases.ConexionBD Coneccion = new Clases.ConexionBD();
-                
-                ResultSet rs = Coneccion.Consulta(sql);
-                DefaultTableModel DefaultTableModel = new DefaultTableModel(){
-                    public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
-                };
-                
-                String ValoresTabla [] = {"Id","Producto","Descripcion","Codigo de barra","Precio","Stock","Vendidos","Total"};
-                DefaultTableModel.setColumnIdentifiers(ValoresTabla);
-                TablaBusqueda.setModel(DefaultTableModel);
-                TablaBusqueda.getColumnModel().getColumn(0).setPreferredWidth(50);
-                TablaBusqueda.getColumnModel().getColumn(1).setPreferredWidth(300);
-                TablaBusqueda.getColumnModel().getColumn(2).setPreferredWidth(300);                
-                String valores [] = new String [8];
-                while (rs.next())
-                {
-                    valores [0] = rs.getString(1);
-                    valores [1] = rs.getString(2);
-                    valores [2] = rs.getString(3);
-                    valores [3] = rs.getString(4);
-                    valores [4] = rs.getString(5);
-                    valores [5] = rs.getString(6);
-                    valores [6] = rs.getString(7);
-                    valores [7] = String.valueOf(rs.getInt(6) + rs.getInt(7));
-                    DefaultTableModel.addRow(valores);       
-                }
-            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
     
     private void Print() 
     {
@@ -292,7 +251,7 @@ public class Inventario extends javax.swing.JInternalFrame {
 
     private void Clean() {
         TextModelo.setText("// Codigo Barra");
-        ChargeDate("select * from productos");
+        f.Inventario_Get(TablaBusqueda, null);
     }
 }
 

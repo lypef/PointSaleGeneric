@@ -6,25 +6,12 @@
 
 package JDesktopPane;
 
-
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.List;
-import java.awt.PrintJob;
-import java.awt.Toolkit;
-import java.awt.print.PrinterException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.Doc;
@@ -36,11 +23,8 @@ import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashAttributeSet;
 import javax.print.attribute.standard.PrinterName;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AttributeSet;
 
 /**
  *
@@ -52,6 +36,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
      * Creates new form SalesNormal
      */
     Clases.ReturnDate datos = new Clases.ReturnDate();
+    public String user = "";
     
     public SalesNormal() {
         initComponents();
@@ -87,6 +72,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
         TxtCambio = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        ComboPago = new javax.swing.JComboBox<>();
 
         jLabel3.setText("00000.00");
 
@@ -205,31 +191,14 @@ public class SalesNormal extends javax.swing.JInternalFrame {
             }
         });
 
+        ComboPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EFECTIVO", "TARJETA", "CHEQUE", "VALE" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(80, 80, 80)
-                                        .addComponent(TxtPagaCon))
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(45, 45, 45)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(80, 80, 80)
-                                        .addComponent(TxtCambio))
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,9 +226,29 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                             .addGap(10, 10, 10)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addComponent(TxtPagaCon))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addComponent(TxtCambio))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(ComboPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,11 +283,13 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(ComboPago))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -407,6 +398,7 @@ public class SalesNormal extends javax.swing.JInternalFrame {
        return hora + ":" + minutos + ":" + segundos; 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboPago;
     private javax.swing.JTable TablaNotaVenta;
     private javax.swing.JLabel TxtCambio;
     private javax.swing.JLabel TxtConsumo;
@@ -522,8 +514,8 @@ public class SalesNormal extends javax.swing.JInternalFrame {
                 }
                 int stock = valor - Integer.parseInt((String) TablaNotaVenta.getValueAt(x, 0));
                 String sql1 = "update productos set stock = '"+stock+"' where id = '"+Integer.parseInt((String) TablaNotaVenta.getValueAt(x, 1))+"'";
-                String addlog = "INSERT INTO `logs`(`producto`,`codigo`, `precio`, `piezas`, `hora` , `fecha`) VALUES ('"+TablaNotaVenta.getValueAt(x, 3)+"','"+TablaNotaVenta.getValueAt(x, 2)+"','"+TablaNotaVenta.getValueAt(x, 4)+"',"
-                        + "'"+TablaNotaVenta.getValueAt(x, 0)+"','"+Hora()+"','"+fecha()+"')";
+                String addlog = "INSERT INTO `logs`(`producto`,`codigo`, `precio`, `piezas`, vendedor,t_pago) VALUES ('"+TablaNotaVenta.getValueAt(x, 3)+"','"+TablaNotaVenta.getValueAt(x, 2)+"','"+TablaNotaVenta.getValueAt(x, 4)+"',"
+                        + "'"+TablaNotaVenta.getValueAt(x, 0)+"','"+user+"','"+ComboPago.getSelectedItem()+"')";
                 
                 Coneccion.ejecutar(sql1);    
                 Coneccion.ejecutar(addlog);
@@ -666,10 +658,10 @@ public class SalesNormal extends javax.swing.JInternalFrame {
             {
                 if (id == BusquedaR.getInt(1))
                 {
-                Clases.ConexionBD coneccion0 = new Clases.ConexionBD();
-                int suma = BusquedaR.getInt(7) + piezas;     
-                String update = "update productos set vendidos = '"+suma+"' where id = '"+id+"'";  
-                coneccion0.ejecutar(update);
+                    Clases.ConexionBD coneccion0 = new Clases.ConexionBD();
+                    int suma = BusquedaR.getInt(7) + piezas;     
+                    String update = "update productos set vendidos = '"+suma+"' where id = '"+id+"'";  
+                    coneccion0.ejecutar(update);
                 }
             }
         
