@@ -5,6 +5,7 @@
 package JDesktopPane;
 
 import Clases.ConexionBD;
+import Clases.functions;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;
@@ -51,7 +52,6 @@ public class Login extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -115,21 +115,17 @@ public class Login extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setText("Ayuda");
+        jMenu4.setText("Acerca de");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu4MousePressed(evt);
+            }
+        });
         jMenu4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu4ActionPerformed(evt);
             }
         });
-
-        jMenuItem3.setText("Acerca de ... ");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem3);
-
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -265,14 +261,16 @@ public class Login extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jMenu4ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Desktop desktop = new Desktop();
-        desktop.DeveloperInfo();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void IngresoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresoUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IngresoUserActionPerformed
+
+    functions f = new functions();
+    
+    private void jMenu4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MousePressed
+        Desktop desktop = new Desktop();
+        desktop.DeveloperInfo();
+    }//GEN-LAST:event_jMenu4MousePressed
 
     /**
      * @param args the command line arguments
@@ -318,7 +316,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables

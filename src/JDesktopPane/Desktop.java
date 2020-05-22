@@ -6,15 +6,18 @@
 
 package JDesktopPane;
 
+import Clases.functions;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
- * @author lypef_000
+ * @author www.cyberchoapas.com
  */
 public class Desktop extends javax.swing.JFrame {
 
@@ -22,13 +25,16 @@ public class Desktop extends javax.swing.JFrame {
      * Creates new form Desktop
      */
     String NivelDeUsuario,UsuarioDeTrabajador;
+    String footer = "", footer_familias = "";
+    
     Clases.ReturnDate datos = new Clases.ReturnDate();
+    functions f = new functions();
     
     public Desktop() {
             initComponents();
             setTitle(datos.ReturnDateMay("nombre"));
             setLocationRelativeTo(null);
-            setAlwaysOnTop(true);
+            //setAlwaysOnTop(true);
             this.setResizable(false);
             
             setExtendedState(MAXIMIZED_BOTH);
@@ -92,6 +98,12 @@ public class Desktop extends javax.swing.JFrame {
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,7 +122,7 @@ public class Desktop extends javax.swing.JFrame {
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGap(0, 463, Short.MAX_VALUE)
         );
 
         jToolBar1.setBackground(new java.awt.Color(229, 42, 42));
@@ -439,6 +451,43 @@ public class Desktop extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu5);
 
+        jMenu6.setText("Caja");
+
+        jMenuItem7.setText("Corte x");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem7);
+
+        jMenuItem23.setText("Corte z");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem23);
+        jMenu6.add(jSeparator5);
+
+        jMenuItem24.setText("Corte x global");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem24);
+
+        jMenuItem25.setText("Corte z global");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem25);
+
+        jMenuBar2.add(jMenu6);
+
         jMenu4.setText("Acerca de");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -593,6 +642,54 @@ public class Desktop extends javax.swing.JFrame {
         DeveloperInfo();
     }//GEN-LAST:event_jMenu4MousePressed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        JTable t = new JTable();
+        f.LogsTable(t, "SELECT v.id, v.producto, v.codigo, v.piezas, v.precio as p_u, (v.precio * v.piezas) as p_total, u.Nombre, f.nombre as familia , v.t_pago, v.fecha FROM logs v, usuarios u, familys f, productos p where v.vendedor = u.Usuario and v.codigo = p.codigo and p.family = f.id and v.cut_z = 0 and v.vendedor = '"+UsuarioDeTrabajador+"' order by f.nombre asc");
+        TotalRecaudado(t);
+        f.GenerateReporte_pdf_Resumen(t, "Corte x, Usuario: " + UsuarioDeTrabajador, 1, footer, footer_familias);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        if (NivelDeUsuario.equalsIgnoreCase("root"))
+        {
+            JTable t = new JTable();
+            f.LogsTable(t, "SELECT v.id, v.producto, v.codigo, v.piezas, v.precio as p_u, (v.precio * v.piezas) as p_total, u.Nombre, f.nombre as familia , v.t_pago, v.fecha FROM logs v, usuarios u, familys f, productos p where v.vendedor = u.Usuario and v.codigo = p.codigo and p.family = f.id and v.cut_z_global = 0  order by f.nombre asc");
+            TotalRecaudado(t);
+            f.GenerateReporte_pdf_Resumen(t, "Corte x global, Genero Usuario: " + UsuarioDeTrabajador, 1, footer, footer_familias);
+        }else
+        {
+            f.Alert("Acceso no permitido", functions.Alert_Error);
+        }
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane,"¿Dejar caja en ceros?","Vaciar caja",0, functions.Alert_Informacion)==0)
+        {
+            JTable t = new JTable();
+            f.LogsTable(t, "SELECT v.id, v.producto, v.codigo, v.piezas, v.precio as p_u, (v.precio * v.piezas) as p_total, u.Nombre, f.nombre as familia , v.t_pago, v.fecha FROM logs v, usuarios u, familys f, productos p where v.vendedor = u.Usuario and v.codigo = p.codigo and p.family = f.id and v.cut_z = 0 and v.vendedor = '"+UsuarioDeTrabajador+"' order by f.nombre asc");
+            TotalRecaudado(t);
+            f.GenerateReporte_pdf_Resumen(t, "Corte Z, Usuario: " + UsuarioDeTrabajador, 1, footer, footer_familias);
+            f.logs_update_cut_x(UsuarioDeTrabajador);
+        }
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        if (NivelDeUsuario.equalsIgnoreCase("root"))
+        {
+            if (JOptionPane.showConfirmDialog(rootPane,"¿Desea vaciar caja global y regresar a ceros?","Vaciar caja global",0, functions.Alert_Warning)==0)
+            {
+                JTable t = new JTable();
+                f.LogsTable(t, "SELECT v.id, v.producto, v.codigo, v.piezas, v.precio as p_u, (v.precio * v.piezas) as p_total, u.Nombre, f.nombre as familia , v.t_pago, v.fecha FROM logs v, usuarios u, familys f, productos p where v.vendedor = u.Usuario and v.codigo = p.codigo and p.family = f.id and v.cut_z_global = 0  order by f.nombre asc");
+                TotalRecaudado(t);
+                f.GenerateReporte_pdf_Resumen(t, "Corte x global, Genero Usuario: " + UsuarioDeTrabajador, 1, footer, footer_familias);
+                f.logs_update_cut_z_global();
+            }
+        }else
+        {
+            f.Alert("Acceso no permitido", functions.Alert_Error);
+        }
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -643,6 +740,7 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -659,16 +757,21 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
@@ -1035,5 +1138,141 @@ public void InsertaNombre (String NivelDeUsuario0 , String UsuarioDeTrabajador0)
             jform.toFront();
             jform.show();
         }
+    }
+    
+    private void TotalRecaudado( JTable Tabla) 
+    {
+        footer = "";
+        footer_familias = "\n";
+        
+        ArrayList lista = new ArrayList();
+        
+        Double total = 0.0;
+        
+        int efectivo = 0;
+        Double efeDouble = 0.0;
+        
+        int tarjeta = 0;
+        Double tarDouble = 0.0;
+        
+        int cheque = 0;
+        Double cheDouble = 0.0;
+        
+        int vale = 0;
+        Double valDouble = 0.0;
+        
+        int otro = 0;
+        Double otrDouble = 0.0;
+        
+        for (int i = 0 ; i < Tabla.getRowCount(); i++)
+        {
+            boolean exist = false;
+            
+            String Familia = (String) Tabla.getValueAt(i, 7);
+            
+            for (Object item: lista) 
+            {
+                if (item.equals(Familia))
+                {
+                    exist = true;
+                    break;
+                }
+            }
+            
+            if (!exist)
+            {
+                lista.add(Familia);
+            }
+        }
+        
+        
+        for (int i = 0 ; i < Tabla.getRowCount(); i++)
+        {
+           Double tmp = Double.parseDouble((String) Tabla.getValueAt(i, 5)); 
+           total += tmp;
+           
+           // Metodos de pago
+           if (String.valueOf(Tabla.getValueAt(i, 8)).equalsIgnoreCase("efectivo"))
+           {
+               efectivo ++;
+               efeDouble += Double.parseDouble((String) Tabla.getValueAt(i, 5));
+           }
+           
+           if (String.valueOf(Tabla.getValueAt(i, 8)).equalsIgnoreCase("tarjeta"))
+           {
+               tarjeta ++;
+               tarDouble += Double.parseDouble((String) Tabla.getValueAt(i, 5));
+           }
+           
+           if (String.valueOf(Tabla.getValueAt(i, 8)).equalsIgnoreCase("cheque"))
+           {
+               cheque ++;
+               cheDouble += Double.parseDouble((String) Tabla.getValueAt(i, 5));
+           }
+           
+           if (String.valueOf(Tabla.getValueAt(i, 8)).equalsIgnoreCase("vale"))
+           {
+               vale ++;
+               valDouble += Double.parseDouble((String) Tabla.getValueAt(i, 5));
+           }
+           
+           if (String.valueOf(Tabla.getValueAt(i, 8)).equalsIgnoreCase("otro"))
+           {
+               otro ++;
+               otrDouble += Double.parseDouble((String) Tabla.getValueAt(i, 5));
+           }
+        }
+        
+        if (efectivo > 0)
+        {
+            footer += "(" + efectivo + ") Efectivo: $ " + efeDouble;
+        }
+        
+        if (tarjeta > 0)
+        {
+            footer += "\n(" + tarjeta + ") Tarjeta: $ " + tarDouble;
+        }
+        
+        if (cheque > 0)
+        {
+            footer += "\n(" + cheque + ") Cheque: $ " + cheDouble;
+        }
+        
+        if (vale > 0)
+        {
+            footer += "\n(" + vale + ") Vale: $ " + valDouble;
+        }
+        
+        if (otro > 0)
+        {
+            footer += "\n(" + otro + ") Otro: $ " + otrDouble;
+        }
+        
+        
+        footer += "\n\nTotal recaudado: $ " + total;
+        
+        // Familias
+        double totalfamily = 0.0;
+        
+        for (Object item: lista) 
+        {
+            int cont = 0;
+            Double tmp = 0.0;
+            
+            for (int i = 0 ; i < Tabla.getRowCount(); i++)
+            {
+                if (Tabla.getValueAt(i, 7).equals(item))
+                {
+                    cont ++;
+                    
+                    double r = Double.parseDouble((String) Tabla.getValueAt(i, 5));
+                    
+                    tmp += r; 
+                    totalfamily += r;
+                }
+            }
+            footer_familias += "("+cont + ") " + f.First_Upercase(item.toString()) + " $ " +tmp + "\n";
+        }
+        footer_familias += "\nTotal recaudado $ " + totalfamily;
     }
 }

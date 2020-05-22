@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -50,10 +51,17 @@ public class functions {
     ConexionBD db;
     
     public ReturnDate d = new ReturnDate();
+    Properties p = new Properties();
     
     public static int Alert_Informacion = JOptionPane.INFORMATION_MESSAGE;
     public static int Alert_Warning = JOptionPane.WARNING_MESSAGE;
     public static int Alert_Error = JOptionPane.ERROR_MESSAGE;
+    
+    public static String Properties_server = "db_url";
+    public static String Properties_Puerto = "db_puerto";
+    public static String Properties_DbName = "bd_name";
+    public static String Properties_Username = "db_username";
+    public static String Properties_Password = "db_password";
     
     public final ArrayList Lista_Familia = new ArrayList();
     
@@ -520,6 +528,14 @@ public class functions {
         return formato.format(fecha);
     }
     
+    public String GetFechaActual ()
+    {
+        java.util.Date fecha = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        
+        return formato.format(fecha);
+    }
+    
     public String GenerateReportResumen (JTable t, String title, int open, String pagos, String Familias)
     {
         String rs = null;
@@ -545,7 +561,7 @@ public class functions {
         return rs;
     }
     
-    private String GenerateReporte_pdf_Resumen (JTable t, String title, int open, String pagos, String familias)
+    public String GenerateReporte_pdf_Resumen (JTable t, String title, int open, String pagos, String familias)
     {
         Document documento = new Document(PageSize.LETTER.rotate(),10,10,10,10);  
         FileOutputStream ficheroPdf;
@@ -680,5 +696,105 @@ public class functions {
         fileChooser.showSaveDialog(null);
         
         return String.valueOf(fileChooser.getSelectedFile()).replace("\\", "/") + "/";
+    }
+    
+    
+    public String PropertiesGET (String Value)
+    {
+        String r = "";
+        try 
+        {
+            p.load(getClass().getResourceAsStream("/Clases/config.properties"));
+            r = p.getProperty(Value);
+        }
+        catch (IOException ex) 
+        {
+            Alert(ex.getMessage(), Alert_Error);
+        }
+        return r;
+    }
+    
+    public void LogsTable (JTable t, String sql)
+    {
+        try {
+            DefaultTableModel DefaultTableModel = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
+            };
+            String ValoresTabla [] = {"ID","PRODUCTO","C. BARRA","PIEZAS","P.U","TOTAL","VENDEDOR","FAMILIA","T. PAGO","FECHA"};
+            DefaultTableModel.setColumnIdentifiers(ValoresTabla);
+            t.setModel(DefaultTableModel);
+            t.getColumnModel().getColumn(0).setPreferredWidth(1);
+            t.getColumnModel().getColumn(1).setPreferredWidth(250);
+            Jtable_Style(t);
+        
+        
+            DefaultTableModel tabla = (DefaultTableModel) t.getModel();
+
+            String valores[] = new String[10];
+
+            db = new Clases.ConexionBD();
+
+            ResultSet rs = db.Consulta(sql);
+
+            while(rs.next())
+            {
+                valores[0] = rs.getString(1);
+                valores[1] = rs.getString(2);
+                valores[2] = rs.getString(3);
+                valores[3] = rs.getString(4);
+                valores[4] = rs.getString(5);
+                valores[5] = rs.getString(6);
+                valores[6] = rs.getString(7);
+                valores[7] = rs.getString(8);
+                valores[8] = rs.getString(9);
+                valores[9] = rs.getString(10);
+
+                tabla.addRow(valores);
+            }
+
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Alert(ex.getMessage(), Alert_Error);
+        }   
+    }
+    
+    public boolean logs_update_cut_x (String user)
+    {
+        boolean r = false;
+        
+        try 
+        {
+            db = new ConexionBD ();
+            if (db.ejecutar("UPDATE `logs` SET `cut_z` = '1' WHERE vendedor = '"+user+"' ") > 0)
+            {
+                r = true;
+            }
+        } 
+        catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) 
+        {
+            Alert(ex.getMessage(),Alert_Error);
+        }
+                
+        return r;
+    }
+    
+    public boolean logs_update_cut_z_global ()
+    {
+        boolean r = false;
+        
+        try 
+        {
+            db = new ConexionBD ();
+            if (db.ejecutar("UPDATE `logs` SET `cut_z_global` = '1'") > 0)
+            {
+                r = true;
+            }
+        } 
+        catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) 
+        {
+            Alert(ex.getMessage(),Alert_Error);
+        }
+                
+        return r;
     }
 }

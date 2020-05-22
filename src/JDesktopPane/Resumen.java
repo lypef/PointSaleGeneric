@@ -326,6 +326,7 @@ public class Resumen extends javax.swing.JInternalFrame {
             Logger.getLogger(Resumen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     private void ShowDateRange(Date FechaInicio, Date FechaFinaly) throws ParseException
     {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
