@@ -6,9 +6,8 @@
 package JDesktopPane;
 
 import Clases.ConexionBD;
+import Clases.functions;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +20,7 @@ public class Config extends javax.swing.JInternalFrame {
      * Creates new form Config
      */
     Clases.ReturnDate datos = new Clases.ReturnDate();
+    functions f = new functions ();
     
     public Config() {
         initComponents();
@@ -50,6 +50,8 @@ public class Config extends javax.swing.JInternalFrame {
         Msg2.setText(datos.ReturnDateMay("msg2"));
         Msg3.setText(datos.ReturnDateMay("msg3"));
         Productsfew.setValue(Integer.parseInt(datos.ReturnDateMay("Productsfew")));
+        TxtRuta.setText(datos.Config_Get(datos.ruta_save));
+        TxtRutaLogo.setText(datos.Config_Get(datos.ruta_logo));
     }
 
     /**
@@ -91,6 +93,13 @@ public class Config extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Msg3 = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        TxtRuta = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        TxtRutaLogo = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         jTabbedPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -267,6 +276,62 @@ public class Config extends javax.swing.JInternalFrame {
 
         jTabbedPane2.addTab("Impresion", jPanel2);
 
+        jLabel10.setText("Ruta guardado docs");
+
+        jButton2.setText("Examinar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Ruta logotipo");
+
+        jButton3.setText("Examinar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TxtRuta)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TxtRutaLogo)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGap(0, 285, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtRutaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(30, 30, 30))
+        );
+
+        jTabbedPane2.addTab("Rutas", jPanel3);
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Save.png"))); // NOI18N
         jButton1.setText("Guardar cambios");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -323,7 +388,7 @@ public class Config extends javax.swing.JInternalFrame {
                 ticketcajon = 0;
             }
                     
-            String Sql = "update config set nombre = '"+TxtName.getText().toUpperCase()+"', rfc = '"+TxtRfc.getText().toUpperCase()+"', direccion = '"+TxtDireccion.getText().toUpperCase()+"', telefono = '"+TxtTelefono.getText().toUpperCase()+"', ticket =  '"+Ticket+"', cajon = '"+ cajon +"', ticketcajon = '"+ ticketcajon +"', nameprint = '"+ TxtImpresora.getText() +"', msg1 = '"+ Msg1.getText() +"', msg2 = '"+ Msg2.getText() +"', msg3 = '"+ Msg3.getText() +"', Productsfew = '"+ Productsfew.getValue() +"'  where id = 1 ";
+            String Sql = "update config set nombre = '"+TxtName.getText().toUpperCase()+"', rfc = '"+TxtRfc.getText().toUpperCase()+"', direccion = '"+TxtDireccion.getText().toUpperCase()+"', telefono = '"+TxtTelefono.getText().toUpperCase()+"', ticket =  '"+Ticket+"', cajon = '"+ cajon +"', ticketcajon = '"+ ticketcajon +"', nameprint = '"+ TxtImpresora.getText() +"', msg1 = '"+ Msg1.getText() +"', msg2 = '"+ Msg2.getText() +"', msg3 = '"+ Msg3.getText() +"', Productsfew = '"+ Productsfew.getValue() +"', ruta_save = '"+TxtRuta.getText()+"', ruta_logo = '"+TxtRutaLogo.getText()+"'  where id = 1 ";
             
             ConexionBD BD = new ConexionBD ();
             BD.ejecutar(Sql);
@@ -334,6 +399,14 @@ public class Config extends javax.swing.JInternalFrame {
             JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Error !, No se pudieron gusrdar los cambios", datos.ReturnDateMay("nombre"), 1);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        TxtRuta.setText(f.GetRutaFolderJdataChooser());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        TxtRutaLogo.setText(f.GetRutaImagenJdataChooser());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -349,6 +422,8 @@ public class Config extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TxtImpresora;
     private javax.swing.JTextField TxtName;
     private javax.swing.JTextField TxtRfc;
+    private javax.swing.JTextField TxtRuta;
+    private javax.swing.JTextField TxtRutaLogo;
     private javax.swing.JTextField TxtTelefono;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -356,7 +431,11 @@ public class Config extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -367,6 +446,7 @@ public class Config extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 }

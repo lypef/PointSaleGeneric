@@ -6,6 +6,7 @@
 
 package JDesktopPane;
 
+import Clases.functions;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
@@ -17,7 +18,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import sun.net.www.MessageHeader;
 
 /**
  *
@@ -29,6 +29,7 @@ public class Supplies extends javax.swing.JInternalFrame {
      * Creates new form Supplies
      */
     Clases.ReturnDate datos = new Clases.ReturnDate();
+    functions f = new functions ();
     
     public Supplies() {
         initComponents();
@@ -229,18 +230,7 @@ public class Supplies extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try {
-            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
-            {
-                MessageFormat Header = new MessageFormat("LISTADO DE PROVEEDORES");
-                Tabla.print(JTable.PrintMode.FIT_WIDTH, Header, null, false, null, isSelected);
-                JOptionPane.showInternalMessageDialog(Desktop.Escritorio,"Hecho");
-            }
-        } catch (PrinterException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (HeadlessException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        f.GenerateReport(Tabla, "Reporte de proveedores", 1);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

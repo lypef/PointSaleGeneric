@@ -26,11 +26,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -619,13 +621,23 @@ public class functions {
             }
             
             documento.add(tabla);
-            documento.add(new Paragraph(" "));
             
-            Paragraph footer = new Paragraph(pagos);
-            footer.setAlignment(1);
-            documento.add(footer);
+            // Informacion footer
+            PdfPTable FooterDatos = new PdfPTable(2);
+            FooterDatos.setWidthPercentage(100);
             
-            footer = new Paragraph("www.cyberchoapas.com");
+            cell = new PdfPCell(new Phrase(pagos));
+            cell.setBorder(0);
+            FooterDatos.addCell(cell);
+            
+            cell = new PdfPCell(new Phrase(familias));
+            cell.setBorder(0);
+            FooterDatos.addCell(cell);
+        
+            documento.add(FooterDatos);
+            //
+            
+            Paragraph footer = new Paragraph("www.cyberchoapas.com");
             footer.setAlignment(1);
             documento.add(footer);
             
@@ -640,49 +652,33 @@ public class functions {
         return ruta.getAbsolutePath();
     }
     
-    private String GenerateReporte_xls_Resumen (JTable t, int open)
+    public static String First_Upercase (String str) 
     {
-        String rutaArchivo = "";
-        try {
-            
-            rutaArchivo = d.Config_Get(d.ruta_save) + "report.xls";
-            
-            File archivoXLS = new File(rutaArchivo);
-            
-            if(archivoXLS.exists()) archivoXLS.delete();
-                archivoXLS.createNewFile();
-            
-            Workbook libro = new HSSFWorkbook();
-            FileOutputStream archivo = new FileOutputStream(archivoXLS);
-
-            Sheet hoja = libro.createSheet("Contenido");
-
-            for(int f=0;f <t.getRowCount() + 1; f++)
-            {
-                Row fila = hoja.createRow(f);
-                for(int c=0;c<t.getColumnCount();c++)
-                {
-                
-                    Cell celda = fila.createCell(c);
-                    
-                    if(f==0){
-                        celda.setCellValue(String.valueOf(t.getColumnName(c)));
-                    }else{
-                        celda.setCellValue(String.valueOf(t.getValueAt(f-1, c)));
-                    }
-                    hoja.autoSizeColumn(c);
-                }
-            }
-
-            libro.write(archivo);
-            archivo.close();
-            if (open > 0)
-            {
-                Desktop.getDesktop().open(archivoXLS);
-            }
-        } catch (IOException ex) {
-            Alert(ex.getMessage(),Alert_Error);
+        if (str == null || str.isEmpty()) 
+        {
+            return str;
+        } 
+        else {
+            //La primera letra en mayuscula y las demas en minuscula.
+            return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
         }
-        return rutaArchivo;
+    }
+    
+    public String GetRutaImagenJdataChooser ()
+    {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+        chooser.setFileFilter(filtroImagen);
+        chooser.showOpenDialog(null);
+        return String.valueOf(chooser.getSelectedFile().getAbsoluteFile()).replace("\\", "/");
+    }
+    
+    public String GetRutaFolderJdataChooser ()
+    {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.showSaveDialog(null);
+        
+        return String.valueOf(fileChooser.getSelectedFile()).replace("\\", "/") + "/";
     }
 }

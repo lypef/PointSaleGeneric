@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ public class Resumen extends javax.swing.JInternalFrame {
      */
     functions f = new functions ();
     boolean next = false;    
-    String footer = "";
+    String footer = "", footer_familias = "";
     
     public Resumen() {
         initComponents();
@@ -235,7 +236,7 @@ public class Resumen extends javax.swing.JInternalFrame {
                 title = "Resumen de venta, Fecha: " + fecha_fin;
             }
         }
-        f.GenerateReportResumen(Tabla,title,1, footer, footer);
+        f.GenerateReportResumen(Tabla,title,1, footer, footer_familias);
     }//GEN-LAST:event_ImprimirActionPerformed
 
     private void BtnRecaudadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRecaudadoActionPerformed
@@ -428,6 +429,9 @@ public class Resumen extends javax.swing.JInternalFrame {
     private void TotalRecaudado() 
     {
         footer = "";
+        footer_familias = "\n";
+        
+        ArrayList lista = new ArrayList();
         
         BtnRecaudado.setText("0.0");
         Double total = 0.0;
@@ -446,6 +450,28 @@ public class Resumen extends javax.swing.JInternalFrame {
         
         int otro = 0;
         Double otrDouble = 0.0;
+        
+        for (int i = 0 ; i < Tabla.getRowCount(); i++)
+        {
+            boolean exist = false;
+            
+            String Familia = (String) Tabla.getValueAt(i, 7);
+            
+            for (Object item: lista) 
+            {
+                if (item.equals(Familia))
+                {
+                    exist = true;
+                    break;
+                }
+            }
+            
+            if (!exist)
+            {
+                lista.add(Familia);
+            }
+        }
+        
         
         for (int i = 0 ; i < Tabla.getRowCount(); i++)
         {
@@ -511,7 +537,32 @@ public class Resumen extends javax.swing.JInternalFrame {
             footer += "\n(" + otro + ") Otro: $ " + otrDouble;
         }
         
+        
         footer += "\n\nTotal recaudado: $ " + total;
+        
+        // Familias
+        double totalfamily = 0.0;
+        
+        for (Object item: lista) 
+        {
+            int cont = 0;
+            Double tmp = 0.0;
+            
+            for (int i = 0 ; i < Tabla.getRowCount(); i++)
+            {
+                if (Tabla.getValueAt(i, 7).equals(item))
+                {
+                    cont ++;
+                    
+                    double r = Double.parseDouble((String) Tabla.getValueAt(i, 5));
+                    
+                    tmp += r; 
+                    totalfamily += r;
+                }
+            }
+            footer_familias += "("+cont + ") " + f.First_Upercase(item.toString()) + " $ " +tmp + "\n";
+        }
+        footer_familias += "\nTotal recaudado $ " + totalfamily;
     }
 
     private void BtnSearchAction() {

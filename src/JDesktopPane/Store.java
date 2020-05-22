@@ -10,7 +10,6 @@ import Clases.functions;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.logging.Level;
@@ -232,10 +231,7 @@ public class Store extends javax.swing.JInternalFrame {
         }
         else
         {
-            if (JOptionPane.showInternalConfirmDialog(Desktop.Escritorio,"Desea imprimir el contenido ?","¿QUESTION?", 0) == 0)
-            {
-               Print();
-            }
+            f.GenerateReport(Tabla,"Reporte store", 1);
         }
 
     }//GEN-LAST:event_ImprimirActionPerformed
